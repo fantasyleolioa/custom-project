@@ -1,6 +1,6 @@
 <div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
      [ngClass]="{scrolled: isScrolled}">
-  <a routerLink="/pages/console" class="al-logo clearfix"><span>互联应用</span>管理中心</a>
+  <a routerLink="/pages/console" class="al-logo clearfix"><span>Custom</span>Project</a>
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
 
   <!-- <div class="search">
@@ -9,20 +9,9 @@
   </div> -->
 
   <div class="user-profile clearfix">
-    <img src="./assets/img/logo_144x66.png" style="float:right;margin-top:-10px" class="logo">
-
-    <div class="al-user-profile dropdown">
-      <p class="profile-toggle-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-        {{userName}}
-        <i class="ion-chevron-down" style="float: right"></i>
-      </p>
-      
-      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd" style="margin:-15px 14px 0 0;right: -43.5px;">
-        <li class="dropdown-item" style="background-color: rgb(255,255,255)"><i class="dropdown-arr"></i></li>
-        <!--<li class="dropdown-item" style="background-color: rgb(255,255,255)"><a href="/#/pages/personalSetting" style="font-size: 15px;"><i class="fa fa-cog"></i>个人设定</a></li>-->
-        <li class="dropdown-item" style="background-color: rgb(255,255,255)"><a style="font-size: 15px;cursor: pointer" class="signout" (click)="logout()" ><i class="ion-android-exit"></i>离开系统</a></li>
-      </ul>
-    </div>
+    <p class="profile-toggle-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      LeoLiao
+    </p>
 
     <!--<ba-msg-center></ba-msg-center>-->
   </div>

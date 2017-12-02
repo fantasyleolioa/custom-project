@@ -13,7 +13,7 @@ export class GlobalState {
     this._dataStream$.subscribe((data) => this._onEvent(data));
   }
 
-  notifyDataChanged(event, value) {
+  public notifyDataChanged(event, value) {
 
     const current = this._data[event];
     if (current !== value) {
@@ -26,18 +26,23 @@ export class GlobalState {
     }
   }
 
-  subscribe(event: string, callback: Function) {
+  public subscribe(event: string, callback: Function) {
     const subscribers = this._subscriptions.get(event) || [];
     subscribers.push(callback);
 
     this._subscriptions.set(event, subscribers);
   }
 
-  _onEvent(data: any) {
+  public _onEvent(data: any) {
     const subscribers = this._subscriptions.get(data['event']) || [];
 
     subscribers.forEach((callback) => {
       callback.call(null, data['data']);
     });
+  }
+
+  public clearSubscribe(event:string) {
+        
+      this._subscriptions.set(event, []);
   }
 }

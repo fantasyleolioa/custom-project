@@ -25,34 +25,6 @@ export class Pages {
 
 	ngOnInit() {
 
-		let userToken = window.sessionStorage.getItem("userToken");
-		
-		if(!userToken){
-	
-			userToken = '';
-			window.sessionStorage.clear();
-	
-			let path = window.location.hash.split('#')[1];
-	
-			if(path == "/login"){
-				path = "/pages/userManagement/userQuery";
-			}
-			window.sessionStorage.setItem("redirectPage", path);
-	
-			window.alert("需要重新登入，将导向回登入页入页");
-			this.router.navigate(["/login"]);
-		};
-
-
-		var menu = JSON.parse(window.sessionStorage.getItem("functionalPermission"));
-
-		if(menu == null || menu == undefined || menu == ""){
-			
-			menu = [];
-		  };
-
-		this._menuService.updateMenuByRoutes(<Routes>menu);
-
-
+		this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
 	}
 }

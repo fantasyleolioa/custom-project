@@ -14,7 +14,6 @@ import { routing } from './app.routing';
 import { App } from './app.component';
 import { AppState, InternalStateType } from './app.service';
 import { ContentTopService } from './service/contentTopService/ContentTop.service';
-import { DomainModule } from './domain/DomainModule.module';
 
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
@@ -52,7 +51,6 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
-    DomainModule,
     routing,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
