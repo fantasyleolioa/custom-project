@@ -14,6 +14,8 @@ export class TabComponent {
 
   constructor(private contenTopService:ContentTopService) {
 
+    this.contenTopService.TitleSetting("Tab樣式展示");
+
     this.tabList.push(new tab(true, "Content1"));
     this.tabList.push(new tab(false, "Content2"));
   }

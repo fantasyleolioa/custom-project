@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, Input} from '@angular/core';
 
 @Component({
   selector: 'TabContent1',
@@ -8,6 +8,10 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 export class TabContent1Component {
 
+  // Property
+  @Input() message: string;
 
+
+  // Constructor
   constructor() {  }
 }

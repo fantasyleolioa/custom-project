@@ -10,7 +10,9 @@ const routes: Routes = [
     path: '',
     component: CustomComponent,
     children:[
-      { path:'tab', component:TabComponent }
+      { path:'tab', component:TabComponent },
+      // { path:'tree', component:TabComponent },
+      // { path:'stateDemo', component:TabComponent },
     ]
   }
 ];

@@ -13,6 +13,5 @@ export class CustomComponent {
 
     this.contenTopService.EnvironmentSetting([]);
     this.contenTopService.ChangeStatus("normal");
-    this.contenTopService.TitleSetting("自製控件展示區");
   }
 }

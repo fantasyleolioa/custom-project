@@ -18,7 +18,23 @@ export const PAGES_MENU = [
             path: 'tab',
             data:{
               menu:{
-                title: 'TabComponent'
+                title: 'Tab Demo'
+              }
+            }
+          },
+          {
+            path: 'tree',
+            data:{
+              menu:{
+                title: 'Tree Demo'
+              }
+            }
+          },
+          {
+            path: 'stateDemo',
+            data:{
+              menu:{
+                title: 'State Demo'
               }
             }
           }
