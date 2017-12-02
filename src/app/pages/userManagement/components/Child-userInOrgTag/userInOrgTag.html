@@ -1,0 +1,99 @@
+<div *ngIf="tabInfo.isFocus">
+    <div *ngIf="!editStatus">
+        <div style="padding-top:3px;padding-bottom:15px;text-align:right;">
+            <button class="btn btn-custom btn-outline-normal" (click)="editStatus = !editStatus">进阶编辑</button>
+        </div>
+
+        <div class="table-responsive table-userInOrg">
+            <table class="table">
+                <thead>
+                    <tr class="table-title">
+                        <th class="table-id id" style="width:85%">片区名称(ID)</th>
+                        <th class="fillup" style="width:100%;text-align:right;padding-left:15px;">删除</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <orgTagTree 
+                *ngFor="let orgTag of sourceUserInOrgTagList"
+                [isChild] = 'false'
+                [isList] = 'true'
+                [menuItem] = "orgTag"
+                [withBorderBottom]="'with-borderBottom'"
+                (childNotification) = "orgTreeGetNotify($event)">
+            </orgTagTree>
+        </div>
+    </div>
+
+    <div *ngIf="editStatus">
+
+        <div style="padding-top:3px;padding-bottom:15px;text-align:right;">
+            <button class="btn btn-custom btn-outline-normal" (click)="previewModalOpen()">预览</button>
+            <button class="btn btn-custom btn-outline-normal" (click)="updateToSource()">更新</button>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="table-responsive table-userInOrg">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-title">
+                                <th class="table-id id" style="width:85%">片区名称(ID)</th>
+                                <th class="fillup" style="width:100%;text-align:right;padding-left:15px;">组织型态</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <orgTagTree 
+                    *ngFor="let orgTag of orgInTagTreeData"
+                    [isChild] = 'false'
+                    [isList] = 'false'
+                    [editStatus]="'multiple'"
+                    [menuItem] = "orgTag"
+                    [withBorderBottom]="'with-borderBottom'"
+                    (childNotification) = "orgTreeGetNotify($event)">
+                </orgTagTree>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--預覽開窗-->
+<ng-template #PreviewModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <span class="modal-title pull-left" style="font-size: 18px;">负责片区预览</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive table-userInOrg">
+            <table class="table">
+                <thead>
+                    <tr class="table-title">
+                        <th class="table-id id" style="width:85%">片区名称(ID)</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div style="overflow-y: scroll;max-height: 350px;width: 100%;">
+                <orgTagTree 
+                    *ngFor="let orgTag of userInOrgTagList"
+                    [isChild] = 'false'
+                    [isList] = 'false'
+                    [menuItem] = "orgTag"
+                    [withBorderBottom]="'with-borderBottom'">
+                </orgTagTree>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-normal" (click)="c('Close click')">确定</button>
+    </div>
+</ng-template>

@@ -1,0 +1,245 @@
+@import "../../../../../theme/sass/conf/conf";
+
+.card {
+
+    &.with-scroll-authDataEdit {
+        margin-bottom: 0px;
+        height: calc(100vh - 160px);
+        > .card-body {
+            flex: 0 1 auto;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+    }
+}
+
+.tab-button{
+    width: 140px;
+    margin-top:6px;
+    height: 38px;
+    background-color: white;
+    display: inline-block;
+    text-align: center;
+    margin-right: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #cccccc;
+
+    &.tab-focuson{
+
+        border-top:4px solid #5bc9bc;
+        border-bottom: 0;
+        height: auto;
+        margin-top: 0;
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+
+    > p{
+        padding-top: 10px
+    }
+}
+
+.btn{
+    &:hover{
+        transform: none;
+    }
+}
+
+.btn-custom-authData {
+    height: 40px;
+    width: 100px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+    font-size: 16px;
+    
+    &:hover{
+      transform: none;
+    }
+  
+    &.btn-result-normal {
+      border-color: #62B7A6;
+      border-radius: 2px;
+      background-color: #62B7A6;
+      color: white;
+  
+      &:hover{
+        background-color: #79c6bb;
+      }
+    }
+  
+    &.btn-result-outline{
+      border-color: #62B7A6;
+      background-color: white;
+      color: #62B7A6;
+  
+      &:hover{
+          background-color: #79c6bb;
+          color: white;
+      }
+    }
+
+    &.btn-org-normal {
+      border-color: #DD8585;
+      border-radius: 2px;
+      background-color: #DD8585;
+      color: white;
+  
+      &:hover{
+        background-color: #D15959;
+      }
+    }
+  
+    &.btn-org-outline{
+      border-color: #DD8585;
+      background-color: white;
+      color: #D15959;
+  
+      &:hover{
+          background-color: #D15959;
+          color: white;
+      }
+    }
+
+    &.btn-role-normal {
+      border-color: #52AAC1;
+      border-radius: 2px;
+      background-color: #52AAC1;
+      color: white;
+  
+      &:hover{
+        background-color: #409FB5;
+      }
+    }
+  
+    &.btn-role-outline{
+      border-color: #52AAC1;
+      background-color: white;
+      color: #52AAC1;
+  
+      &:hover{
+          background-color: #409FB5;
+          color: white;
+      }
+    }
+
+    &.btn-user-normal {
+      border-color: #CC8A76;
+      border-radius: 2px;
+      background-color: #CC8A76;
+      color: white;
+  
+      &:hover{
+        background-color: #C46C5B;
+      }
+    }
+  
+    &.btn-user-outline{
+      border-color: #CC8A76;
+      background-color: white;
+      color: #CC8A76;
+  
+      &:hover{
+          background-color: #C46C5B;
+          color: white;
+      }
+    }
+
+    &:disabled{
+        background-color: white;
+        border-color: #cccccc;
+        color:#cccccc;
+
+        &:hover{
+            background-color: white;
+            border-color: #cccccc;
+            color:#cccccc;
+        }
+    }
+}
+
+.btn-custom {
+    min-height: 32px;
+    min-width: 80px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+    
+    &:hover{
+      transform: none;
+    }
+  
+    &.btn-primary-normal {
+      border-color: #2bb2a2;
+      border-radius: 2px;
+      background-color: #2bb2a2;
+      color: white;
+  
+      &:hover{
+        background-color: #22c6ae;
+      }
+    }
+  
+    &.btn-outline-normal{
+      border-color: #209e91;
+      background-color: white;
+      color: #209e91;
+  
+      &:hover{
+          background-color: #22c6ae;
+          color: white;
+      }
+    }
+
+    &.btn-outline-alert{
+        border-color: #e54c4c;
+        background-color: white;
+        color:#e54c4c;
+    
+        &:hover{
+            
+            background-color: #ef7878;
+            color: white;
+        }
+    }
+
+    &.btn-primary-danger{
+        border-color: #e95e5e;
+        background-color: #e95e5e;
+        font-size: 14px;
+        color:white;
+        margin: 0;
+
+        &:hover{
+            
+            background-color: #f76f6f;
+        }
+    }
+
+    &.btn-outline-normal{
+
+        &:disabled{
+            border-color: #cccccc;
+            color:#cccccc;
+        }
+    }
+
+    &.btn-primary-custom, &.btn-primary-danger{
+
+        &:disabled{
+            border-color: #cccccc;
+            background-color: #cccccc;
+            color:#cccccc;
+        }
+    }
+}
+
+select{
+
+    &.unSelected{
+        background-color: #62b7a6;
+        color: white;
+
+        &:not([multiple]) option{
+
+            background-color: white;
+        }
+    }
+}

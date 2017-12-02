@@ -1,0 +1,48 @@
+<div *ngIf="tabInfo.isFocus && ViewButtonList[3].isActive">
+        <div *ngIf="!isStateView">
+            <div style="display: flex;justify-content: space-between;align-items:flex-end;height: 60px;">
+                <div>
+                    <select class="form-control authData-select user" [ngModel]="selectedViewButton" (ngModelChange)="viewButtonSelect($event)">
+                        <option value="resultView">运算结果</option>
+                        <!-- <option value="orgView">组织</option> -->
+                        <option value="roleView">角色</option>
+                        <option value="userView">用户</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-custom btn-outline-normal" (click)="userAuthEdit()">编辑</button>
+                </div>
+            </div>
+
+            <div style="padding-top: 20px;">
+                <authTree   
+                    *ngFor="let item of authTreeData" 
+                    [menuItem]="item" 
+                    [editStatus]="'normal'" 
+                    [withBorderBottom]="'with-borderBottom'"
+                    [isResult] = "false"
+                    [isIDShow]="true"
+                    (childNotification)="getNotify($event)">
+                </authTree>
+            </div>
+        </div>
+    
+        
+        <div *ngIf="isStateView">
+            <div class="state-Nav">
+                <div style="text-align:left;" class="title">
+                    <p> <span (click)="isStateView = !isStateView">權限总览</span> > <span (click)="isStateView = !isStateView"> {{selectedAction.name}} </span> > 状态</p>
+                </div>
+                <div style="text-align:right;">
+                </div>
+            </div>
+    
+            <div class="row" *ngFor="let conditionRow of conditionList" style="margin: 0;border-bottom: 1px solid #cccccc;">
+                <div class="col-md-4" *ngFor="let condition of conditionRow" style="padding: 20px 15px 10px 20px">
+                    <label style="font-size: 16px;color: #cccccc;">{{ condition.name }}</label>
+                    <p style="font-size: 16px;color: #333333;">{{ condition.value }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    

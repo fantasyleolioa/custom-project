@@ -1,0 +1,53 @@
+<!--停用提示區塊-->
+<div class="row" *ngIf="promptText != ''" style="margin-bottom: 24px;">
+    <div class="col-md-12">
+        <div style="border: 1px #FFAA99 solid;">
+            <ba-card baCardClass="prompt">
+                <label>{{ promptText }}</label>
+            </ba-card>
+        </div>
+    </div>
+</div>
+
+<ba-card baCardClass="editBaCard">
+    <div class="row">
+        <div class="col-md-6">
+            <label><span style="color:#e54c4c">*</span>恢复原因</label>
+            <textarea class="form-control col-md-12" cols="50" [ngModel]="resumeCause" (ngModelChange)="resumeCauseTypeIn($event)" placeholder="最多输入100个字"></textarea>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</ba-card>
+
+<div baCardBlur class="animated fadeIn card" zoom-in>
+    <div class="card-header tab clearfix">
+        <div style="height: 44px;">
+
+            <div *ngFor="let tab of tabList" style="margin-top: 2px;"  class="tab-button" [ngClass]="{'tab-focuson': tab.isFocus}" (click)="tabButtonClick(tab)">
+                <p>{{ tab.name }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div *ngFor="let userMetadata of userMetadataInfo;let medaDataIndex = index" style="margin-left:-15px;margin-right:-15px;border-bottom: 1px solid #999999;">
+            <div class="row" style="margin: 0;">
+                <div class="col-md-2" style="padding-top: 15px;text-align:left;">
+                    <p style="margin-top: 7px;font-weight:bold;font-size:14px;">{{userMetadata.catalogId}}</p>
+                </div>
+    
+                <div class="offset-md-8 col-md-2" style="padding-top: 15px;text-align:right;">
+                    <label class="markLabel" *ngIf="medaDataIndex == 0">(资料同步来源)</label>
+                </div>
+            </div>
+    
+            <div class="row userMetadata-row" *ngFor="let metadataColumn of userMetadata.metadataColumn; let i = index">
+                <div *ngIf="i >= 1" style="margin:0 15px 10px 15px;width:100%;border-top: 1px solid #cccccc;"></div>
+                <div class="col-md-4" *ngFor="let metadata of metadataColumn">
+                    <label>{{ metadata.name }}</label>
+                    <p style="color:black;margin:0;font-size: 16px;padding-top: 5px;">{{ metadata.value }}</p>
+                    <label class="markLabel">{{ metadata.providerText }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

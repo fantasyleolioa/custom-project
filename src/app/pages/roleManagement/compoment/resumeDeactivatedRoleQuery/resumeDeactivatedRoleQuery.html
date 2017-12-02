@@ -1,0 +1,113 @@
+<ba-card>
+    <div class="row">
+        <div class="col-md-3">
+            <label>角色ID</label>
+            <input type="text" class="form-control" [(ngModel)]="roleId" placeholder="输入关键字">
+        </div>
+        <div class="col-md-3">
+            <label>角色名称</label>
+            <input type="text" class="form-control" [(ngModel)]="roleName" placeholder="输入关键字">
+        </div>
+        <div class="col-md-3">
+            <button style="margin-top: 24px;float: left;" [disabled]="searchButtonStatus" (click)="searchData()" class="btn btn-custom btn-primary-normal">{{ searchButtonText }}</button>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</ba-card>
+
+<div class="animated fadeIn card with-scroll-userQuery" style="margin-bottom: 0;">
+    <div class="card-header card-header-m clearfix" style="height: 60px;border: 0;">
+        <h3 class="card-title" style="margin-top: 3px;"> 查询结果 </h3>
+    </div>
+
+    <div class="card-body table-query ">
+
+        <div class="table-responsive" *ngIf="isEnabled == 'true'">
+            <table class="table">
+                <thead>
+                    <tr class="table-title table-title-m2">
+                        <th class="table-id id ">角色ID</th>
+                        <th class="content">角色名称</th>
+                        <th class="fillup" style="text-align:right;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let role of roleList" class="table-body">
+                        <td class="id"> {{role.id}} </td>
+                        <td class="content"> {{role.name}} </td>
+                        <td style="text-align:right;" class="fillup">
+                            <button class="btn btn-custom btn-outline-normal" (click)="openResumeModal(role)">恢复</button>
+                        </td>                       
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="page-bar-m" style="float: right;margin-top:10px;" *ngIf="roleList.length != 0">
+                <div class="btn-group" data-toggle="buttons">
+                    <button type="button" class="btn btn-default" (click)="changePage('1', 0)" >
+                        <i class="fa fa-fast-backward"></i>    
+                    </button>
+                    <button type="button" class="btn btn-default" (click)="changePage(nowPage, -1)">
+                        <i class="ion-chevron-left"></i>
+                    </button>
+                    <label class="btn btn-query" style="padding: 5px 0 4px 0;width: 35px;border-right: none;margin-bottom: 0;">
+                        <input style="margin-left:5px;width:30px;border:none;text-align: center;" type="text" [(ngModel)]="nowPage" (focusout)="onFocusOut($event)" (keyup)="onKeyUp($event)"> 
+                    </label>
+                    <label class="btn btn-query slice" style="padding: 6px 0px 5px 0;text-align: center;width: 20px;margin-bottom: 0;">
+                        / 
+                    </label>
+                    <label class="btn btn-query final" style="padding: 6px 10px 5px 0;text-align: center;width: 35px;margin-bottom: 0;">
+                        {{pageCount}} 
+                    </label>
+                    <button type="button" class="btn btn-default" (click)="changePage(nowPage, 1)">
+                        <i class="ion-chevron-right"></i>    
+                    </button>
+                    <button type="button" class="btn btn-default" (click)="changePage(pageCount, 0)">
+                        <i class="fa fa-fast-forward"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--恢復角色開窗-->
+<ng-template #RoleModal let-c="close" let-d="dismiss">
+   <div class="popup-box-m">
+    <div class="modal-header">
+        <span class="modal-title pull-left" style="font-size: 18px;">恢复角色</span>
+        <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button> -->
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <label><span style="color:#e54c4c">*</span>角色分类</label>
+                    <select class="form-control custom" [ngClass]="{unSelected: selectedcCatalog == '请选择角色分类'}" [(ngModel)]="selectedcCatalog" (ngModelChange)="catalogSelected($event)">
+                        <option *ngIf="selectedcCatalog == '请选择角色分类'" value="请选择角色分类">角色分类</option>    
+                        <option *ngFor="let catalog of roleCatalogList" [value]="catalog.id"> {{catalog.name}} ({{ catalog.id }})</option>
+                    </select>
+                </div>
+            </div>            
+            <div class="row" style="padding-top: 15px;">
+                <div class="col-md-12">
+                    <label>角色ID</label><p>{{resumeRoleId}}</p>
+                    <!-- <input type="text" class="form-control" [(ngModel)]="resumeRoleId" placeholder="请输入角色ID" disabled> -->
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px;">
+                <div class="col-md-12">
+                    <label>角色名称</label><p>{{resumeRoleName}}</p>
+                    <!-- <input type="text" class="form-control" [(ngModel)]="resumeRoleName" placeholder="请输入角色名称" disabled> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-danger" (click)="c('Close click')">取消</button>
+        <button class="btn btn-custom btn-primary-normal" [disabled]="modalConfirmStatus || id =='' || name ==''" (click)="resumeDeactiveEdit()" >{{ modalConfirmText }}</button>            
+    </div>
+  </div>
+</ng-template>

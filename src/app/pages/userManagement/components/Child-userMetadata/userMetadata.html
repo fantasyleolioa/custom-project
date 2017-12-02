@@ -1,0 +1,27 @@
+<!-- userMetadataColum -->
+<div *ngIf="tabInfo.isFocus">
+    <div *ngFor="let userMetadata of userMetadataInfo;let medaDataIndex = index" style="margin-left:-15px;margin-right:-15px;border-bottom: 1px solid #999999;">
+        <div class="row" style="margin: 0;">
+            <div class="col-md-2" style="padding-top: 15px;text-align:left;">
+                <p style="margin-top: 7px;font-weight:bold;font-size:14px;">{{userMetadata.catalogId}}</p>
+            </div>
+
+            <div class="offset-md-8 col-md-2" style="padding-top: 15px;text-align:right;">
+                <label class="markLabel" *ngIf="medaDataIndex == 0">(资料同步来源)</label>
+            </div>
+        </div>
+
+        <div class="row userMetadata-row" *ngFor="let metadataColumn of userMetadata.metadataColumn; let i = index">
+            <div *ngIf="i >= 1" style="margin:0 15px 10px 15px;width:100%;border-top: 1px solid #cccccc;"></div>
+            <div class="col-md-4" *ngFor="let metadata of metadataColumn">
+                <label>{{ metadata.name }}</label>
+                <input *ngIf="metadata.type == 'string'" type="text" class="form-control" [readonly]="metadata.readOnly" [(ngModel)]="metadata.value" >
+                <select style="cursor: default;" *ngIf="metadata.type == 'single' || metadata.type=='boolean'" class="form-control" [disabled]="metadata.readOnly" [(ngModel)]="metadata.value">
+                    <option *ngFor="let parameter of metadata.typeParameter" [value]="parameter"> {{ parameter }} </option>
+                </select>
+                <input style="cursor: default;" *ngIf="metadata.type == 'time'" type="date" [disabled]="metadata.readOnly" [(ngModel)]="metadata.value">
+                <label class="markLabel">{{ metadata.providerText }}</label>
+            </div>
+        </div>
+    </div>
+</div>

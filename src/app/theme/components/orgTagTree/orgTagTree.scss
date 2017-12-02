@@ -1,0 +1,172 @@
+@import '../../sass/conf/conf';
+
+.stateConfig-button{
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+    border:none;
+    padding: 0px 6px 0px 3px;
+    margin-top: 13px;
+
+    i{
+      font-size: 13px;
+      padding-right: 2px;
+    }
+}
+
+button.btn.btn-default.btn-icon {
+  &:active, &:target {
+    background-color: white;
+  }
+}
+
+.treeData-list-custom {
+    margin: 0;
+    padding: 0 0 0 0;
+    list-style: none;
+
+    &.with-borderBottom{
+
+      border-bottom: 1px solid #cccccc;
+      padding-bottom: 10px;
+      
+      li{
+        padding-bottom: 10px;
+      }
+    }
+}
+
+.treeData-list-custom ul {
+    padding-left: 11px;
+
+    li{
+      border-top: 1px solid #cccccc;      
+    }
+}
+
+.treeData-list-link {
+    position: relative;
+    display: block;
+    height: 30px;
+    padding-left: 21px;
+    text-shadow: none;
+    font-size: 13px;
+    text-decoration: none;
+    color: lightslategrey;
+    line-height: 42px;
+    white-space: nowrap;
+
+    &.without-arrow{
+
+      padding-left:0;
+    }
+
+    p{
+      margin-bottom: 0;
+
+      &.checked{
+        padding-left: 24px;
+      } 
+    }
+    
+
+    b {
+      display: block;
+      opacity: 1;
+      width: 0px;
+      height: 0px;
+      line-height: 14px;
+      text-shadow: none;
+      font-size: 18px;
+      position: absolute;
+      left:6px;
+      right: 10px;
+      top: 14px;
+      padding: 0;
+      text-align: center;
+      color: lightslategrey;
+      transition: transform 0.2s linear;
+      cursor: pointer;
+
+      &:focus, :active{
+        color: $primary;
+      }
+    }
+
+    &:hover {
+      color: $primary;
+      b {
+        color: $primary;
+      }
+    }
+}
+
+.tree-list-caret{
+  width: 0;
+	height: 0;
+  margin-top: 2px;
+	border-bottom: 9px solid lightslategrey;
+	border-left: 9px solid transparent;
+
+    &:hover {
+      border-bottom-color: $primary;
+    }
+}
+
+label.custom-checkbox.org-selected-tree {
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+
+  & > span{
+    margin-top: 13px;
+    padding-left: 26px;
+  }
+
+  & > input {
+    &:checked {
+      & + span {
+        &:before {
+          color: white;
+          background-color: $primary;
+          border-color:$primary !important;
+        }
+      }
+    }
+
+    &:disabled, &.disbled{
+      & + span {
+        &:before {
+          background-color: #efefef;
+          border-color:#efefef;
+        }
+      }
+    }
+  }
+}
+
+.treeData-list-custom{
+
+    ul.treeData-list-custom {
+      li {
+        padding: 0 0 10px 31px;
+        position: relative;
+      }
+      
+      ul {
+        padding-left:41px;
+        border-left: 1px dashed  lightgrey;
+      }
+    } 
+
+    .treeData-list-custom li:before {
+      content: '';
+      width: 21px;
+      height:15px;
+      border-left: 1px dashed  lightgrey;
+      border-bottom: 1px dashed  lightgrey;
+      left: 0px;
+      top: 8px;
+      position: absolute;
+    }
+}

@@ -1,0 +1,52 @@
+<div baCardBlur class="animated fadeIn card with-scroll-userAuthEdit" zoom-in>
+    <div class="card-header card-header-m">
+        <h3 class="card-title" style="margin-top: 3px;">角色分类</h3>
+        <div class="float-right">
+            <button class="btn btn-custom btn-outline-normal" (click)="openAddModal()">新增
+            </button>
+        </div>
+    </div>
+    <div style="height:1px;width:100%;margin:0 0 10px 0;border-bottom:lightslategrey">&nbsp;</div>
+    <div class="card-body table-query">
+        <div *ngFor="let item of treeData" style="padding-left:10px;padding-right:10px">
+            <roleTree [menuItem]="item" [editStatus]="editStatus" [isRoot]="true" [withBorderBottom]="'with-borderBottom'" [mainTree]="treeData"
+                [edittingLock]="true" (childNotification)="getNotify($event)">
+            </roleTree>
+        </div>
+    </div>
+</div>
+
+<!--新增角色開窗-->
+<ng-template #AddRoleCatalogModal let-c="close" let-d="dismiss">
+  <div class="popup-box-m">
+    <div class="modal-header" >
+        <span class="modal-title pull-left" style="font-size: 18px;">新增角色分类</span>
+        <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button> -->
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>
+                        <span style="color:#e54c4c">*</span>角色分类ID</label>
+                    <input type="text" class="form-control" [(ngModel)]="roleCatalogId" placeholder="请输入角色分类ID">
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px;">
+                <div class="col-md-12">
+                    <label>
+                        <span style="color:#e54c4c">*</span>角色分类名称</label>
+                    <input type="text" class="form-control" [(ngModel)]="roleCatalogName" placeholder="请输入角色分类名称">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-danger" (click)="c('Close click')">取消</button>
+        <button class="btn btn-custom " [ngClass]="(modalConfirmStatus || roleCatalogId =='' || roleCatalogName =='') ? 'btn-primary-basic':'btn-primary-normal'"
+            [disabled]="modalConfirmStatus || roleCatalogId =='' || roleCatalogName ==''" (click)="addRoleCatalog()">{{ modalConfirmText }}</button>
+    </div>
+   </div> 
+</ng-template>

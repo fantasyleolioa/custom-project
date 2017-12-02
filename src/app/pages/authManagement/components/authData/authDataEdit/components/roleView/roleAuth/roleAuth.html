@@ -1,0 +1,80 @@
+<div *ngIf="tabInfo.isFocus && ViewButtonList[2].isActive">
+    <div *ngIf="!isStateView">
+        <div style="display: flex;justify-content: space-between;align-items:flex-end;height: 60px;">
+            <div>
+                <select class="form-control authData-select role" [ngModel]="selectedViewButton" (ngModelChange)="viewButtonSelect($event)">
+                    <option value="resultView">运算结果</option>
+                    <!-- <option value="orgView">组织</option> -->
+                    <option value="roleView">角色</option>
+                    <option value="userView">用户</option>
+                </select>
+            </div>
+            <div class="input-group authData">
+                <input type="text"  class="form-control" placeholder="请填入搜寻值" [ngModel]="searchTarget" (ngModelChange)="filterList($event)">
+                <div class="input-group-addon" style="cursor: pointer;"><i class="ion-search"></i></div>
+            </div>
+        </div>
+
+        <div>
+            <div class="table-responsive table-authDataEdit">
+                <table class="table">
+                    <thead>
+                        <tr class="table-title">
+                            <th class="table-id id" style="width: 100%;">归属角色</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div *ngFor="let role of rolePermissionList">
+                <div class="role-authData-list">
+                    <div class="content" (click)="role.subCollapsed = !role.subCollapsed" style="cursor: pointer;">
+                        <p>
+                            <b     
+                                class="fa authData-dataList-caret"
+                                style="font-size: 18px;margin-right: 5px;"
+                                [ngClass]="{'fa-caret-down': !role.subCollapsed, 'authData-dataList-caret': role.subCollapsed}">
+                            </b>
+                            {{role.name}} ({{role.id}})
+                        </p>
+                        <p  class="urn">{{role.catalogName}}:{{role.name}}</p>
+                    </div>
+                    <div style="padding-right: 5px">
+                        <button class="btn btn-custom btn-outline-normal" (click)="roleAuthEdit(role)">编辑</button>
+                    </div>
+                </div>
+
+                <div [ngbCollapse]="role.subCollapsed" class="authTreeData">
+                    <authTree   
+                        *ngFor="let item of role.authData" 
+                        [menuItem]="item" 
+                        [editStatus]="'normal'" 
+                        [withBorderBottom]="'with-borderBottom'"
+                        [isResult] = "false"
+                        [isIDShow]="true"
+                        (childNotification)="getNotify($event)">
+                    </authTree>
+                </div>
+            </div>  
+            
+        </div>
+    </div>
+
+    
+    <div *ngIf="isStateView">
+        <div class="state-Nav">
+            <div style="text-align:left;" class="title">
+                <p> <span (click)="isStateView = !isStateView">權限总览</span> > <span (click)="isStateView = !isStateView"> {{selectedAction.name}} </span> > 状态</p>
+            </div>
+            <div style="text-align:right;">
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let conditionRow of conditionList" style="margin: 0;border-bottom: 1px solid #cccccc;">
+            <div class="col-md-4" *ngFor="let condition of conditionRow" style="padding: 20px 15px 10px 20px">
+                <label style="font-size: 16px;color: #cccccc;">{{ condition.name }}</label>
+                <p style="font-size: 16px;color: #333333;">{{ condition.value }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+    

@@ -1,0 +1,25 @@
+<div class="content-top clearfix">
+    <a class="lastPage" *ngIf="isLastPage" (click)="backLastPage()">
+        <i class="ion-android-arrow-back"></i>
+    </a>
+    <a class="lastPage" *ngIf="isLastPageCustom" (click)="backLastPageCustom()">
+        <i class="ion-android-arrow-back" ></i>
+    </a>
+  <h1 class="al-title" translate>{{ activePageTitle }}</h1>
+
+  <div class="btn-pannel" style="padding-right: 22px;">
+        <button type="button" 
+                class="btn btn-custom" 
+                (click)="TriggerButton(item.EventName)"
+                *ngFor="let item of buttonList"
+                [ngClass]="item.ButtonClass"
+                [disabled]="item.IsDisabled"
+                style="margin-left: 5px;">
+            <p class="text-inner">{{item.ButtonText}}</p>
+        </button>
+
+        <button *ngIf="editStatus" [disabled]="processing" type="button" class="btn btn-custom btn-primary-normal" (click)="Save()">
+            <p class="text-inner">儲存</p>
+        </button>
+    </div>
+</div>

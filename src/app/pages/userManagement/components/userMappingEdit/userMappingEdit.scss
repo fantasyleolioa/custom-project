@@ -1,0 +1,65 @@
+@import "../../../../theme/sass/conf/conf";
+
+.danger-message{
+  color: $danger;
+  font-weight: bolder;
+}
+
+.btn {
+  &:hover {
+    transform: none;
+  }
+}
+
+
+label.custom-radio.usermapping{
+
+  & > input {
+    &:checked {
+      & + span {
+        &:before {
+          color: $primary;
+          border-color:$primary;
+        }
+      }
+    }
+
+    &:disabled, &.disbled{
+      & + span {
+        &:before {
+          background-color: #efefef;
+          border-color:#efefef !important;
+        }
+      }
+    }
+  }
+}
+
+
+label.custom-checkbox.usermapping {
+
+  & > input {
+    &:checked {
+      & + span {
+        &:before {
+          color: white;
+          background-color: $primary;
+          border-color:$primary;
+        }
+      }
+    }
+
+    & > span {
+
+      padding-left: 0px;
+    }
+
+    &:disabled, &.disbled{
+      & + span {
+        &:before {
+          background-color: #efefef;
+        }
+      }
+    }
+  }
+}

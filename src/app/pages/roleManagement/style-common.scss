@@ -1,0 +1,483 @@
+.prompt {
+  margin-bottom: 0px;
+  >.card-body {
+    background-color: rgba(255, 170, 170, 0.5);
+    label {
+      color: rgba(190, 0, 51, 1);
+      font-weight: bolder;
+      font-size: 20px;
+      padding-top: 10px;
+    }
+  }
+}
+
+
+/* btn 按鈕 */
+
+.btn {
+  border-radius: 2px;
+}
+
+.btn:hover {
+  transform: none;
+}
+
+.btn-custom {
+  min-height: 32px;
+  border-radius: 2px;
+  min-width: 80px;
+  font-family: 微軟正黑體;
+  font-weight: 700;
+}
+
+
+/* 紅色  btn-primary-danger #e95e5e #f76f6f */
+
+.btn-custom.btn-primary-danger:hover {
+  background-color: #f76f6f;
+}
+
+.btn-custom.btn-primary-danger {
+  border-color: #e95e5e;
+  background-color: #e95e5e;
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.btn-custom.btn-outline-normal {
+  border-color: #209e91;
+  background-color: white;
+  color: #209e91;
+  &:hover {
+    background-color: #22c6ae;
+    color: white;
+  }
+}
+
+
+/* 綠色  btn-primary-normal #2bb2a2  #22c6ae */
+
+.btn-custom.btn-primary-normal {
+  border-color: #2bb2a2;
+  border-radius: 2px;
+  background-color: #2bb2a2;
+  color: #fff;
+}
+
+.btn-custom.btn-primary-normal:hover {
+  background-color: #22c6ae;
+}
+
+
+/* disabled */
+
+.btn:disabled,
+.btn[disabled],
+.btn-custom.btn-primary-normal[disabled],
+.btn-custom.btn-primary-normal:disabled,
+.btn-custom.btn-primary-normal:hover:disabled,
+.btn-custom.btn-primary-normal:hover[disabled] {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #fff;
+}
+
+
+/*  001 roleEdit */
+
+.card>.card-header-m {
+  display: flex;
+  height: 56px;
+}
+
+.card>.card-header-m .card-title {
+  line-height: 32px;
+}
+
+.card-header-m .float-right {
+  margin-right: -2px;
+  width: 40%;
+  text-align: right;
+}
+
+// .tree-block-mx {
+//   padding-left: 10px;
+//   padding-right: 10px;
+// }
+// .tree-block-mx div.treeData-list-link {
+//   height: 42px;
+//   z-index: 2;
+// }
+// .tree-block-mx div.treeData-list-link:hover,
+// .tree-block-mx div.treeData-list-link:hover b,
+// .tree-block-mx div.treeData-list-link.active {
+//   background-color: #62b7a6;
+//   color: #fff;
+//   border-bottom-color: #fff;
+// }
+// .tree-block-mx div.treeData-list-link:hover b,
+// .tree-block-mx div.treeData-list-link.active b {
+//   color: #fff;
+//   border-bottom-color: #fff;
+// }
+// .tree-block-mx ul.treeData-list-custom .collapse.show {
+//   background-color: #f3f9f8;
+// }
+// .tree-block-mx ul.treeData-list-custom .collapse.show:last-child {
+//   padding-bottom: 12px;
+// }
+// .tree-block-mx .treeData-list-link.without-arrow {
+//   padding: 0;
+//   height: 30px;
+// }
+// .tree-block-mx .treeData-list-link.without-arrow:hover {
+//   background-color: transparent;
+//   color: #789;
+//   line-height: 42px;
+// }
+// .tree-block-mx .treeData-list-custom .treeData-list-custom li:before {
+//   height: 29px;
+//   top: -7px;
+// }
+
+/* 002 - 新增 - 彈窗內樣式 */
+
+.popup-box-m .modal-header {
+  padding-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eceeef;
+}
+
+.popup-box-m .modal-header button.close {
+  padding-bottom: 5px;
+}
+
+.popup-box-m .modal-footer {
+  border-top: 1px solid #eceeef;
+}
+
+
+/* 003 角色編輯 > 編輯  roleCatalogEdit */
+
+.card-header-m .card-title p {
+  font-size: 16px;
+  color: #000;
+}
+
+.card-header-m .card-title p span.link-t1 {
+  cursor: pointer;
+  color: #038c78;
+}
+
+.card-header-m .card-title b {
+  color: #999;
+  padding: 0 5px;
+}
+
+.table-responsive {
+  margin-top: 0;
+}
+
+.card-body.table-query .table-title.table-title-m2 {
+  //background-color: transparent !important;
+}
+
+.card-body.table-query .table-title.table-title-m2 .id,
+.card-body.table-query .table-title.table-title-m2 .content {
+  line-height: 28px;
+}
+
+
+/* 004-角色編輯-停用角色分類-開窗  */
+
+.txt-bold p {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+/*  編輯角色 - 編輯 */
+
+.table>tbody>tr>td {
+  line-height: 35px;
+}
+
+button.btn.btn-default i.ion-android-close {
+  width: 18px;
+  height: 18px;
+  display: block;
+  font-size: 18px;
+  margin-top: -8px;
+  padding-left: 10px;
+}
+
+.table .table-body:hover button.btn.btn-default i.ion-android-close {
+  color: #fff; // color: #e95e5e;
+  // text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff;
+}
+
+button.btn.btn-default:active,
+button.btn.btn-default:target,
+button.btn.btn-default:focus {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+
+/* 編輯用戶清單 - 搜尋圖示 */
+
+
+/*
+.input-group .form-control:not(:last-child){
+  border-right: none;
+}
+*/
+
+.authData .form-control {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+  width: 280px;
+}
+
+.input-group-addon {
+  background-color: transparent;
+  position: absolute;
+  z-index: 2;
+  right: 4px;
+  top: 8px;
+  border: none;
+  font-size: 18px;
+  width: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.input-group.authData {
+  width: 100%;
+  margin-bottom: 15px;
+  padding-right: 0;
+}
+
+.input-group.authData .form-control {
+  border-color: #cbcbcb;
+}
+
+.input-group.authData .form-control:focus {
+  border-color: #4db1a7;
+}
+
+.input-group.authData input {
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+
+/* 編輯用戶清單  */
+
+label.custom-checkbox>span {
+  margin-top: 7px;
+  color: #79c6bb;
+}
+
+label.custom-checkbox>span:before {
+  border-radius: 2px;
+}
+
+.table .table-body:hover label.custom-checkbox>span:before {
+  background-color: #fff;
+  border-color: #fff;
+  color: #79c6bb;
+}
+
+.table .table-body label.custom-checkbox>span:hover:before {
+  // background-color: #d0fdf7;
+  // background-color: #fff;
+  border: 1px solid #999;
+}
+
+label.custom-checkbox.allow>input:checked+span:before {
+  background-color: #fff;
+  border-color: #999;
+  border-radius: 2px; // box-shadow: 0 0 1px #333;
+}
+
+
+/*  彈窗清單 popup-box-m */
+
+.popup-box-m .modal-table-query .table-title {
+  display: block;
+  width: 100%;
+}
+
+.popup-box-m .modal-table-query tbody {
+  display: block;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.popup-box-m .modal-table-query tbody .table-body {
+  display: block;
+  width: 100%;
+}
+
+
+/*  頁碼可輸入 顏色 > #2bb2a2 */
+
+.page-bar-m label.btn input {
+  color: #2bb2a2;
+}
+
+.page-bar-m button.btn .btn:disabled i,
+.page-bar-m button.btn[disabled] i {
+  color: #ccc;
+}
+
+label.btn-query {
+  cursor: default;
+  border-top: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(214, 214, 214);
+  &.slice {
+    border-left: none;
+    border-right: none;
+  }
+  &.final {
+    border-left: none;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0);
+    ;
+    border-color: rgb(214, 214, 214);
+    color: inherit;
+  }
+}
+
+.modal-body div p {
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 5px
+}
+
+.card>.card-body {
+  padding: 15px 22px;
+  height: 100%;
+}
+
+.card-body.table-query {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  .table-title {
+    min-height: 34px;
+    background-color: #f9f9f9;
+    margin: 0;
+    border-bottom: 1px solid #999999;
+    border-top: 1px solid #999999;
+    font-family: 'Source Sans Pro', sans-serif, "微軟正黑體";
+    color: black;
+    font-weight: bold;
+    .id {
+      padding: 8px 0 8px 25px;
+      text-align: left;
+      border: none;
+    }
+    .content {
+      padding: 8px 0 8px 15px;
+      border: none;
+    }
+    .fillup {
+      padding: 8px 22px 8px 25px;
+      text-align: right;
+      border-bottom: 1px solid #999999;
+      border-top: 1px solid #999999;
+    }
+  }
+  .table-body {
+    min-height: 40px;
+    margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+    &:hover {
+      background-color: #62b7a6;
+      color: white;
+    }
+    .id {
+      padding: 5px 0 5px 25px;
+      text-align: left;
+      border: none;
+    }
+    .content {
+      padding: 5px 0 5px 15px;
+      text-align: left;
+      border: none;
+    }
+    .fillup {
+      padding: 5px 22px 5px 15px;
+      text-align: right;
+      border: none;
+    }
+  }
+}
+
+.table {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  .table-title {
+    min-height: 34px;
+    background-color: #f9f9f9;
+    margin: 0;
+    border-bottom: 1px solid #999999;
+    border-top: 1px solid #999999;
+    font-family: 'Source Sans Pro', sans-serif, "微軟正黑體";
+    color: black;
+    font-weight: bold;
+    .id {
+      padding: 8px 0 8px 25px;
+      text-align: left;
+      border: none;
+      min-width: 160px;
+    }
+    .content {
+      padding: 8px 0 8px 15px;
+      border: none;
+    }
+    .fillup {
+      padding: 8px 22px 8px 25px;
+      text-align: right;
+      border-bottom: 1px solid #999999;
+      border-top: 1px solid #999999;
+    }
+  }
+  .table-body {
+    min-height: 40px;
+    margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+    &:hover {
+      background-color: #62b7a6;
+      color: white;
+    }
+    .id {
+      padding: 5px 0 5px 25px;
+      text-align: left;
+      border: none;
+    }
+    .content {
+      padding: 5px 0 5px 15px;
+      text-align: left;
+      border: none;
+    }
+    .fillup {
+      padding: 5px 22px 5px 15px;
+      text-align: right;
+      border: none;
+    }
+  }
+}
+
+.table>tbody>tr>td {
+  line-height: 30px;
+}

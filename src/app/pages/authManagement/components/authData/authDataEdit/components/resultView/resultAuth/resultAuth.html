@@ -1,0 +1,83 @@
+<div *ngIf="tabInfo.isFocus && ViewButtonList[0].isActive">
+    <div *ngIf="!isStateView">
+        <div style="display: flex;justify-content: space-between;align-items:flex-end;height: 60px;">
+            <div>
+                <select class="form-control authData-select result" [ngModel]="selectedViewButton" (ngModelChange)="viewButtonSelect($event)">
+                    <option value="resultView">运算结果</option>
+                    <!-- <option value="orgView">组织</option> -->
+                    <option value="roleView">角色</option>
+                    <option value="userView">用户</option>
+                </select>
+            </div>
+            <div class="input-group authData">
+                <input type="text"  class="form-control" placeholder="请填入搜寻值" [ngModel]="searchTarget" (ngModelChange)="filterList($event)">
+                <div class="input-group-addon" style="cursor: pointer;"><i class="ion-search"></i></div>
+            </div>
+        </div>
+
+        <div class="resultList allow">
+            <div class="title">
+                <div>
+                    <p class="titleText">开通权限</p>
+                </div>
+
+                <div>
+                    <p *ngIf="searchTarget != ''" class="titleText">結果：{{allowList.length}}筆</p>
+                </div>  
+            </div>
+
+            <div class="listContent" *ngFor="let action of allowList">
+                <div style="padding-left: 13px;">
+                    <p class="action-name">{{action.name}} ({{action.id}})</p>
+                    <p style="margin: 0;" class="action-urn">{{action.urn}}</p>
+                </div>
+
+                <div style="padding-right: 5px">
+                    <button *ngIf="action.condition.length > 0" class="btn btn-custom btn-outline-normal" (click)="selectState(action)">状态</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="resultList deny">
+            <div class="title">
+                <div>
+                    <p class="titleText">关闭权限</p>
+                </div>
+
+                <div>
+                    <p *ngIf="searchTarget != ''" class="titleText">結果：{{denyList.length}}筆</p>
+                </div>  
+            </div>
+
+            <div class="listContent" *ngFor="let action of denyList">
+                <div style="padding-left: 13px;">
+                    <p class="action-name">{{action.name}} ({{action.id}})</p>
+                    <p style="margin: 0;" class="action-urn">{{action.urn}}</p>
+                </div>
+
+                <div style="padding-right: 5px">
+                    <button class="btn btn-custom btn-outline-normal">状态</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div *ngIf="isStateView">
+        <div class="state-Nav">
+            <div style="text-align:left;" class="title">
+                <p> <span (click)="isStateView = !isStateView">權限总览</span> > <span (click)="isStateView = !isStateView"> {{selectedAction.name}} </span> > 状态</p>
+            </div>
+            <div style="text-align:right;">
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let conditionRow of conditionList" style="margin: 0;border-bottom: 1px solid #cccccc;">
+            <div class="col-md-4" *ngFor="let condition of conditionRow" style="padding: 20px 15px 10px 20px">
+                <label style="font-size: 16px;color: #cccccc;">{{ condition.name }}</label>
+                <p style="font-size: 16px;color: #333333;">{{ condition.value }}</p>
+            </div>
+        </div>
+    </div>
+</div>

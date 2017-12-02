@@ -1,0 +1,135 @@
+<div class="animated fadeIn card with-scroll-authDataEdit" style="margin-bottom: 0;">
+    <div class="card-header tab clearfix">
+        <div style="height: 44px;">
+
+            <div *ngFor="let tab of tabList"  class="tab-button" [ngClass]="{'tab-focuson': tab.isFocus}" (click)="tabButtonClick(tab)">
+                <p>{{ tab.name }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <div>
+            <div *ngIf="tabList[0].isFocus" class="row" style="padding: 10px 6px 20px 6px;">
+                <div class="col-md-12">
+                    <select class="form-control custom" [ngClass]="{unSelected: selectedApp == '请选择欲浏览的应用'}" [ngModel]="selectedApp" (ngModelChange)="appSelected($event)">
+                        <option *ngIf="selectedApp == '请选择欲浏览的应用'" value="请选择欲浏览的应用">请选择欲浏览的应用</option>    
+                        <option *ngFor="let app of appList" [value]="app.id"> {{app.name}} ({{ app.id }})</option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="selectedApp != '请选择欲浏览的应用' && tabList[0].isFocus" style="width: 100%;display: flex;justify-content: center;padding-bottom: 14px;">
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-result-normal': authDataButtonList[0].isActive, 'btn-result-outline': !authDataButtonList[0].isActive}" 
+                    (click)="authViewButtonClick(authDataButtonList[0])">
+                    运算结果
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> = </p>
+                <!-- <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-org-normal': authDataButtonList[1].isActive, 'btn-org-outline': !authDataButtonList[1].isActive}" 
+                    (click)="authViewButtonClick(authDataButtonList[1])">
+                    组织
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> + </p> -->
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-role-normal': authDataButtonList[2].isActive, 'btn-role-outline': !authDataButtonList[2].isActive}" 
+                    (click)="authViewButtonClick(authDataButtonList[2])">
+                    角色
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> + </p>
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-user-normal': authDataButtonList[3].isActive, 'btn-user-outline': !authDataButtonList[3].isActive}" 
+                    (click)="authViewButtonClick(authDataButtonList[3])">
+                    用户
+                </button>
+            </div>
+
+            <div *ngIf="tabList[1].isFocus" style="width: 100%;display: flex;justify-content: center;padding-bottom: 14px;">
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-result-normal': policDataButtonList[0].isActive, 'btn-result-outline': !policDataButtonList[0].isActive}" 
+                    (click)="policyViewButtonClick(policDataButtonList[0])">
+                    运算结果
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> = </p>
+                <!-- <button 
+                    [disabled]="true"
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-org-normal': policDataButtonList[1].isActive, 'btn-org-outline': !policDataButtonList[1].isActive}" 
+                    (click)="policyViewButtonClick(policDataButtonList[1])">
+                    行為
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> + </p> -->
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-role-normal': policDataButtonList[2].isActive, 'btn-role-outline': !policDataButtonList[2].isActive}" 
+                    (click)="policyViewButtonClick(policDataButtonList[2])">
+                    角色
+                </button>
+                <p style="font-size: 34px;padding: 13px;margin: 0;"> + </p>
+                <button 
+                    class="btn btn-custom-authData" 
+                    [ngClass]="{'btn-user-normal': policDataButtonList[3].isActive, 'btn-user-outline': !policDataButtonList[3].isActive}" 
+                    (click)="policyViewButtonClick(policDataButtonList[3])">
+                    用户
+                </button>
+            </div>
+
+        </div>
+        <div style="border-bottom: 1px solid #999999;width: 104%;margin-left: -20px;"></div>
+
+        <div *ngIf = "selectedApp != '请选择欲浏览的应用'">
+            <ResultAuth
+                [tabInfo] = "tabList[0]"
+                [allowList] = "resultPermission.allow"
+                [denyList] = "resultPermission.deny"
+                [(ViewButtonList)] = "authDataButtonList">
+            </ResultAuth>
+
+            <OrgAuth
+                [tabInfo] = "tabList[0]"
+                [orgPermissionList] = "orgPermissionList"
+                [selectedAppId] = "selectedApp"
+                [(ViewButtonList)] = "authDataButtonList">
+            </OrgAuth>
+
+            <RoleAuth
+                [tabInfo] = "tabList[0]"
+                [rolePermissionList] = "rolePermissionList"
+                [selectedAppId] = "selectedApp"
+                [(ViewButtonList)] = "authDataButtonList">
+            </RoleAuth>
+            
+            <UserAuth
+                [authTreeData] = "userAuthTreeData"
+                [tabInfo] = "tabList[0]"
+                [selectedAppId] = "selectedApp"
+                [(ViewButtonList)] = "authDataButtonList">
+            </UserAuth>
+        </div>
+
+        <div *ngIf = "tabList[1].isFocus">
+            <ResultDatapolicy
+                [ViewButtonList]="policDataButtonList"
+                [resultDatapolicyList]="resultDatapolicyList">
+            </ResultDatapolicy>
+
+             <RoleDatapolicy
+                [ViewButtonList]="policDataButtonList"
+                [roleDatapolicyList]="roleDatapolicyList">
+            </RoleDatapolicy>
+
+             <UserDatapolicy
+                [ViewButtonList]="policDataButtonList"
+                [userDatapolicyList]="userDatapolicyList">
+            </UserDatapolicy>
+        </div>
+
+        
+    </div>
+</div>

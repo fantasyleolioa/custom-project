@@ -1,0 +1,70 @@
+<div *ngIf="tabInfo.isFocus">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div *ngFor="let item of roleTreeData">
+                
+                <div *ngIf="item.isMultiSelect">
+                    <tree 
+                        [menuItem]="item" 
+                        [editStatus]="'multiple'" 
+                        [isRoot]="true" 
+                        [isRoleCatalog]="true"
+                        [withBorderBottom]="'with-borderBottom'"
+                        [mainTree]="roleTreeData"
+                        (childNotification) = "getNotify($event)">
+                    </tree>
+                </div>
+                <div *ngIf="!item.isMultiSelect">
+                    <tree 
+                        [menuItem]="item" 
+                        [editStatus]="'single'" 
+                        [isRoot]="true" 
+                        [isRoleCatalog]="true"
+                        [withBorderBottom]="'with-borderBottom'"
+                        [mainTree]="roleTreeData"
+                        (childNotification) = "getNotify($event)">
+                    </tree>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-left: 0;padding-right: 0;border-left: 1px solid #999999;border-right: 1px solid #999999;">
+            <div class="table-responsive table-userInOrg" style="margin-top:0;">
+                <table class="table">
+                    <thead>
+                        <tr class="table-title">
+                            <th class="table-id id">角色分类名称(ID)</th>
+                            <th class="fillup" style="text-align: left;">角色名称(ID)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of selectedRoleList;let i = index;">
+                        <tr class="table-body" *ngIf="i == 0">
+                            <td class="id" style="color: #333333;"> 
+                                <p>
+                                    {{item.catalogName}} ({{item.catalogId}})
+                                </p>
+                            </td>
+                            <td class="fillup" style="text-align: left;padding-left: 25px;color: #333333;">
+                                {{item.roleName}} ({{item.roleId}})
+                            </td>                      
+                        </tr>
+
+                        <tr class="table-body" *ngIf="i > 0">
+                            <td class="id"> 
+                                <p *ngIf="selectedRoleList[i-1].catalogId != selectedRoleList[i].catalogId">
+                                    {{item.catalogName}} ({{item.catalogId}})
+                                </p>
+                            </td>
+                            <td class="fillup" style="text-align: left;padding-left: 25px;">
+                                {{item.roleName}} ({{item.roleId}})
+                            </td>                      
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

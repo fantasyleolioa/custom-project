@@ -1,0 +1,195 @@
+<ba-card title='组织权限' class="col-md-12">
+    <div class="card-header clearfix" style="height: 58px;border: 0;">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                    <!--<h3 class="card-title" style="margin-top: 3px;">管理员角色</h3>-->
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a
+                                    href="#/pages/systemManagement/administratorManagement/administratorPermissions/organizationalPermissions">管理员角色</a>
+                            </li>
+                            <li class="breadcrumb-item active" *ngIf="formStatus === 'normal'">{{role.name}}</li>
+                            <li class="breadcrumb-item" *ngIf="formStatus === 'editted'"><a
+                                href="javascript:void(0)" (click)="cancel()">{{role.name}}</a></li>
+                            <li class="breadcrumb-item active" *ngIf="formStatus === 'editted'">组织权限</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row float-right">
+                    <!--这里需要disable吗 -->
+                    <!--<button [disabled]="searchButtonStatus" class="btn btn-custom btn-outline-normal"-->
+                    <button class="btn btn-custom btn-primary-normal"
+                            *ngIf="formStatus === 'normal'"
+                            (click)="previewUsers()"
+                            style="margin-right: 9px;">用户清单
+                    </button>
+                    <button class="btn btn-custom btn-outline-normal"
+                            *ngIf="formStatus === 'normal'"
+                            (click)="save()"
+                            style="margin-right: 9px;">储存
+                    </button>
+                    <button class="btn btn-custom btn-outline-normal"
+                            *ngIf="formStatus === 'editted'"
+                            (click)="previewOrg()"
+                            style="margin-right: 9px;">预览
+                    </button>
+                    <button class="btn btn-custom btn-outline-normal"
+                            *ngIf="formStatus === 'editted'"
+                            (click)="update()"
+                            style="margin-right: 9px;">更新
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr class="full-hr"/>
+    </div>
+    <div class="card-header clearfix" *ngIf="formStatus === 'normal'" style="height: 35px;border: 0;padding-top: 5px;">
+        <div class="row" *ngIf="formStatus === 'normal'">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                    <h3 class="card-title" style="margin-top: 3px;">互联应用管理中心权限</h3>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row float-right">
+                    <button class="btn btn-custom btn-primary-normal"
+                            (click)="edit()"
+                            style="margin-right: 9px;">进阶编辑
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body" *ngIf="formStatus === 'normal'">
+        <div class="table-responsive table-userInOrg">
+            <table class="table">
+                <thead>
+                <tr class="table-title">
+                    <th class="table-id id" style="width:85%">组织名称(ID)</th>
+                    <th class="fillup text-right">删除</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-body" *ngFor="let org of roleOrgPolicy">
+                    <td class="id">
+                        <p class="orgname" style="margin:0;">{{org.name}}({{org.label}})</p>
+                        <p class="urn" style="margin:0;padding-left:15px;">{{org.urn}}</p>
+                    </td>
+                    <td class="fillup text-right">
+                        <button class="btn btn-default btn-icon" type="button" (click)="removeOrg(org)"
+                                style="border:none;padding:0;margin-right: 15px;">
+                            <i class="ion-android-close"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-body" *ngIf="formStatus === 'editted'" style="padding-top: 5px;">
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control" [ngModel]="selectedOrgCatalog" (ngModelChange)="selectOrgCatalog($event)">
+                    <option *ngFor="let orgCatalog of orgCatalogs" [value]="orgCatalog.id"> {{orgCatalog.name}} ({{ orgCatalog.id }})</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" [ngModel]="selectedOrgAspect" (ngModelChange)="selectOrgTree($event)">
+                    <option *ngFor="let orgAspect of orgAspectList" [value]="orgAspect.id"> {{orgAspect.name}} ({{ orgAspect.id }}) </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive table-userInOrg">
+                    <table class="table">
+                        <thead>
+                        <tr class="table-title">
+                            <th class="table-id id" style="width:85%">组织名称(ID)</th>
+                            <th class="fillup" style="width:100%;text-align:right;padding-left:15px;">组织型态</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <orgTree
+                        *ngFor="let item of orgTreeData"
+                        [menuItem]="item"
+                        [editStatus]="'multiple'"
+                        [isRoot]="true"
+                        [withBorderBottom]="'with-borderBottom'"
+                        [mainTree]="orgTreeData"
+                        (childNotification) = "orgTreeGetNotify($event)">
+                </orgTree>
+            </div>
+        </div>
+    </div>
+</ba-card>
+
+<!--用户预览开窗-->
+<ng-template #PreviewModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <span class="modal-title pull-left" style="font-size: 18px;">用户清单预览</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive modal-table-query">
+            <table class="table table-fixed">
+                <thead>
+                <tr class="table-title">
+                    <!--<th class="table-id id" style="min-width: 160px;">用户 ID</th>-->
+                    <!--<th class="content">用户名称</th>-->
+                    <th class="table-id id" style="width: 160px;">用户 ID</th>
+                    <th class="content">用户名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of searchedUsers" class="table-body">
+                    <td class="id" style="width: 160px;"> {{user.id}}</td>
+                    <td class="content"> {{user.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-normal" (click)="c('Close click')">确定</button>
+    </div>
+</ng-template>
+
+<!--组织预览开窗-->
+<ng-template #OrgPreviewModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <span class="modal-title pull-left" style="font-size: 18px;">组织预览</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive modal-table-query">
+            <table class="table table-fixed">
+                <thead>
+                <tr class="table-title">
+                    <!--<th class="table-id id" style="min-width: 160px;">用户 ID</th>-->
+                    <!--<th class="content">用户名称</th>-->
+                    <th class="table-id id col-sm-9 col-md-9" style="width: 74%;">组织名称（ID）</th>
+                    <th class="content col-sm-3 col-md-3">组织形态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let org of roleOrgPolicy" class="table-body">
+                    <td class="id col-sm-9">{{org.name}}({{org.label}})</td>
+                    <td class="content col-sm-3">{{org.typeName}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-normal" (click)="c('Close click')">确定</button>
+    </div>
+</ng-template>

@@ -1,0 +1,96 @@
+<!--停用提示區塊-->
+<div class="row" *ngIf="promptText != ''" style="margin-bottom: 24px;">
+    <div class="col-md-12">
+        <div style="border: 1px #FFAA99 solid;">
+            <div class="animated fadeIn card prompt">
+                <div class="card-body">
+                    <label>{{ promptText }}</label>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="animated fadeIn card with-scroll-console" zoom-in>
+    <div class="card-header tab clearfix">
+        <div style="height: 44px;">
+
+            <div *ngFor="let tab of tabList"  class="tab-button" [ngClass]="{'tab-focuson': tab.isFocus}" (click)="tabButtonClick(tab)">
+                <p>{{ tab.name }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div>
+            <!-- userInfo -->
+            <div class="row" style="border-bottom: 1px solid #999999;padding-bottom:20px;"  *ngIf="tabList[0].isFocus">
+                <div class="col-md-4">
+                    <label>用户ID</label>
+                    <input type="text" class="form-control" [(ngModel)]="userId" placeholder="输入用户ID" required>
+                </div>
+                <div class="col-md-4">
+                    <label>用户名称</label>
+                    <input type="text" class="form-control" [(ngModel)]="userName" placeholder="输入用户名称" required>
+                </div>
+                <div class="col-md-4">
+                    <label>密码</label>
+                    <input type="password" class="form-control" [(ngModel)]="password" placeholder="输入密码" required>
+                </div>
+            </div>
+
+            <UserMetadataColumn 
+                [userMetadataInfo]="userMetadataInfo"
+                [tabInfo]="tabList[0]">
+            </UserMetadataColumn>
+
+            <UserInRole
+                [tabInfo]="tabList[1]"
+                [roleTreeData]="roleDataList"
+                [(sourceRoleIdList)]="roleIdList">
+            </UserInRole>
+
+            <UserInOrg
+                [tabInfo]= "tabList[2]"
+                [orgCatalogList]= "orgCatalogList"
+                [selectedOrgCatalog]= "selectedOrgCatalog"
+                [orgAspectList]= "orgAspectList"
+                [selectedOrgAspect]= "selectedOrgAspect"
+                [orgTreeData]= "orgTreeData"
+                [nowPage]="'userAdd'"
+                [(sourceUserInOrgList)]= "userInOrgList">
+            </UserInOrg>
+
+            <UserInOrgTag
+                [tabInfo]="tabList[3]"
+                [orgInTagTreeData]="orgTagList"
+                [nowPage]="'userAdd'"
+                [(sourceUserInOrgTagList)]="userInOrgTagList">
+            </UserInOrgTag>
+
+        </div>
+    </div>
+</div>
+
+<!-- 詢問開窗 -->
+<ng-template #SaveModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <span class="modal-title pull-left" style="font-size: 18px;">离开页面</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="c('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="font-size: 14px;">您的资料尚未储存，是否离开?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-normal" (click)="c('Close click')">留在此页</button>
+        <button class="btn btn-custom btn-primary-danger" (click)="exitThisPage()">离开此页</button>
+    </div>
+</ng-template>

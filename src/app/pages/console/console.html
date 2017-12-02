@@ -1,0 +1,14 @@
+<div baCardBlur class="animated fadeIn card with-scroll-console" zoom-in>
+    <div class="card-header tab clearfix">
+        <div style="height: 44px;">
+
+            <div *ngFor="let tab of tabList"  class="tab-button" [ngClass]="{'tab-focuson': tab.isFocus}" (click)="tabButtonClick(tab)">
+                <p>{{ tab.name }}</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        
+    </div>
+</div>

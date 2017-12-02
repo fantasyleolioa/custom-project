@@ -1,0 +1,142 @@
+<ba-card title='管理员' [ngClass]="editMode == true ? 'col-md-6' : 'col-md-12'">
+    <div class="card-header clearfix" style="height: 194px;border: 0;">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                    <!--<h3 class="card-title" style="margin-top: 3px;">管理员角色</h3>-->
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a
+                                    href="#/pages/systemManagement/administratorManagement/administratorEdit">管理员角色</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">{{roleName}}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row float-right">
+                    <!--这里需要disable吗 -->
+                    <!--<button [disabled]="searchButtonStatus" class="btn btn-custom btn-outline-normal"-->
+                    <button class="btn btn-custom btn-primary-danger"
+                            *ngIf="role.id !== 'superadmin'"
+                            (click)="disableRole()"
+                            style="margin-right: 9px;">停用
+                    </button>
+                    <button class="btn btn-custom btn-outline-normal"
+                            [disabled]="role.name === ''"
+                            (click)="saveRole()"
+                            style="margin-right: 9px;">存储
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <hr class="full-hr"/>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <h3 class="card-title" style="margin-top: 3px;">管理员角色名称</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <span>
+                        <input type="text" class="form-control" style="width: 60%; display: inline;" maxlength="20"
+                               [(ngModel)]="role.name"> ({{role.id}})
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr class="full-hr half-full-hr"/>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                    <h3 class="card-title" style="margin-top: 3px;">用户清单</h3>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row float-right">
+                    <!--这里需要disable吗 -->
+                    <!--<button [disabled]="searchButtonStatus" class="btn btn-custom btn-outline-normal"-->
+                    <button class="btn btn-custom btn-outline-normal"
+                            (click)="editRolePro()"
+                            style="margin-right: 9px;">进阶编辑
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body table-query">
+        <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr class="table-title">
+                    <th class="table-id id" style="min-width: 160px;">用户 ID</th>
+                    <th class="content">用户名称</th>
+                    <th class="fillup text-right">删除</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of selectedUsers" class="table-body">
+                    <td class="id"> {{user.id}}</td>
+                    <td class="content"> {{user.name}}</td>
+                    <td class="fillup text-right">
+                        <button class="btn btn-default btn-icon" type="button" (click)="removeUser(user)"
+                                style="border:none; padding:0; margin-right: 15px;">
+                            <i class="ion-android-close"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ba-card>
+
+<!--移除用户状态开窗-->
+<ng-template #disableRoleModal let-c="close" let-d="dismiss">
+    <div class="modal-header" style="border-bottom: solid 1px grey;">
+        <span class="modal-title pull-left" style="font-size: 18px; margin-bottom: 15px">停用管理员角色</span>
+    </div>
+    <div class="modal-body" style="border-bottom: solid 1px grey;">
+        <div class="row">
+            <div class="col-md-12">
+                <p><span>尚有用户套用此管理员角色，确定停用吗？</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p><span style="color:#e54c4c">按下确定按钮后，将会清楚套用此管理员角色的所有用户！</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-danger" (click)="c('Close click')">取消</button>
+        <button class="btn btn-custom btn-primary-normal" [disabled]="!modalDisableConfirmStatus || disabledCause ==''"
+                (click)="disableRoleModalConfirm()">{{modalDisableConfirmText}}
+        </button>
+    </div>
+</ng-template>
+
+<!--消息开窗-->
+<ng-template #messageBoxModal let-c="close" let-d="dismiss">
+    <div class="modal-header" style="border-bottom: solid 1px grey;">
+        <span class="modal-title pull-left" style="font-size: 18px; margin-bottom: 15px">{{msg.title}}</span>
+    </div>
+    <div class="modal-body" style="border-bottom: solid 1px grey;">
+        <div class="row">
+            <div class="col-md-12">
+                <p><span>{{msg.content}}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-custom btn-primary-danger" (click)="c('Close click')">确定</button>
+        <button class="btn btn-custom btn-primary-normal" (click)="d('Dismiss click')">取消</button>
+    </div>
+</ng-template>
