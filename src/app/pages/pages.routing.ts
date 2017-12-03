@@ -12,6 +12,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'custom/tab', pathMatch: 'full' },
       { path: 'custom', loadChildren: './custom/custom.module#CustomModule' },
+      { path: 'album', loadChildren: './album/album.module#AlbumModule' },
     ],
   },
 ];

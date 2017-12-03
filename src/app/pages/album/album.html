@@ -1,0 +1,24 @@
+<div baCardBlur class="animated fadeIn card with-scroll-album" zoom-in>
+    <div class="card-header tab clearfix">
+        <div style="height: 44px;">
+
+            <div *ngFor="let tab of tabList"  class="tab-button" [ngClass]="{'tab-focuson': tab.isFocus}" (click)="tabButtonClick(tab)">
+                <p>{{ tab.name }}</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <AppFoundry
+            *ngIf="tabList[0].isFocus">
+        </AppFoundry>
+
+        <Cac
+            *ngIf="tabList[1].isFocus">
+        </Cac>
+
+        <CC
+            *ngIf="tabList[2].isFocus">
+        </CC>
+    </div>
+</div>

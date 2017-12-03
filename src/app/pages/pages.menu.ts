@@ -37,6 +37,14 @@ export const PAGES_MENU = [
                 title: 'State Demo'
               }
             }
+          },
+          {
+            path: 'dragableArea',
+            data:{
+              menu:{
+                title: 'Dragable Demo'
+              }
+            }
           }
         ]
       },
