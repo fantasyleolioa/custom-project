@@ -2,6 +2,7 @@ import { Routes, RouterModule }  from '@angular/router';
 
 import { CustomComponent } from './custom.component';
 import { TabComponent } from "./components/TabComponent/tab.component";
+import { TreeComponent } from "./components/TreeComponent/tree.component";
 
 
 // noinspection TypeScriptValidateTypes
@@ -11,7 +12,7 @@ const routes: Routes = [
     component: CustomComponent,
     children:[
       { path:'tab', component:TabComponent },
-      // { path:'tree', component:TabComponent },
+      { path:'tree', component:TreeComponent },
       // { path:'stateDemo', component:TabComponent },
     ]
   }

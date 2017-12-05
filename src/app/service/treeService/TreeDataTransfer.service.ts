@@ -18,41 +18,6 @@ export class TreeDataTransferService {
 
     constructor() {}
 
-    public Transfer(target: SourceTreeData[]) {
-
-        const resultTree: TreeData[] = [];
-
-        const nodes: Collections.Dictionary<string, TreeData[]> = new Collections.Dictionary<string, TreeData[]>();
-
-        target.forEach(
-            (soureElement: SourceTreeData) => {
-
-                const current = new TreeData(soureElement.name, soureElement.id, soureElement.isInherit, soureElement.hash);
-                current.catalogId = soureElement.catalogId;
-                if (!nodes.containsKey(soureElement.parentId)) {
-                    
-                    nodes.setValue(soureElement.parentId, new Array<TreeData>());
-                    nodes.getValue(soureElement.parentId).push(current);
-                }else {
-
-                    nodes.getValue(soureElement.parentId).push(current);
-                }
-            },
-        );
-
-
-        nodes.getValue(('[empty]')).forEach(
-            (root: TreeData, i: number) => {
-
-                resultTree.push(root);
-                this.Build(root, nodes, resultTree);
-                resultTree[i].SetSubCollapsed(false);
-            },
-        );
-
-        return resultTree;
-    }
-
     public TransferApplication(target: Application) {
 
         const resultTree: TreeData[] = [];

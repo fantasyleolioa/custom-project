@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'custom',
         data: {
           menu: {
-            title: 'Custom',
+            title: '功能展示',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -18,7 +18,7 @@ export const PAGES_MENU = [
             path: 'tab',
             data:{
               menu:{
-                title: 'Tab Demo'
+                title: '頁籤Component'
               }
             }
           },
@@ -26,7 +26,7 @@ export const PAGES_MENU = [
             path: 'tree',
             data:{
               menu:{
-                title: 'Tree Demo'
+                title: '樹狀資料Component'
               }
             }
           },
@@ -34,7 +34,7 @@ export const PAGES_MENU = [
             path: 'stateDemo',
             data:{
               menu:{
-                title: 'State Demo'
+                title: '狀態Service實作'
               }
             }
           },
@@ -42,7 +42,15 @@ export const PAGES_MENU = [
             path: 'dragableArea',
             data:{
               menu:{
-                title: 'Dragable Demo'
+                title: '拖拉視窗'
+              }
+            }
+          },
+          {
+            path: 'areaCenter',
+            data:{
+              menu:{
+                title: '水平、垂直置中'
               }
             }
           }
@@ -52,7 +60,7 @@ export const PAGES_MENU = [
         path: 'album',
         data: {
           menu: {
-            title: 'Project Album',
+            title: '作品集',
             icon: 'ion-image',
             selected: false,
             expanded: false,
