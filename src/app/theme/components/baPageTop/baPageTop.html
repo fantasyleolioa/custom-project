@@ -1,0 +1,18 @@
+<div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
+     [ngClass]="{scrolled: isScrolled}">
+  <a routerLink="/pages/console" class="al-logo clearfix"><span>Custom</span>Project</a>
+  <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
+
+  <!-- <div class="search">
+    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+    <input id="searchInput" type="text" placeholder="Search for...">
+  </div> -->
+
+  <div class="user-profile clearfix">
+    <p class="profile-toggle-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      LeoLiao
+    </p>
+
+    <!--<ba-msg-center></ba-msg-center>-->
+  </div>
+</div>

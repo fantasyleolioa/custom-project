@@ -1,0 +1,246 @@
+@import '../../../theme/sass/conf/conf';
+
+.stateConfig-button{
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+    border:none;
+    padding: 0px 6px 0px 3px;
+    margin-top: 13px;
+
+    i{
+      font-size: 13px;
+      padding-right: 2px;
+    }
+}
+
+
+.treeData-list-custom {
+    margin: 0;
+    padding: 0 0 0 0;
+    list-style: none;
+
+    &.with-borderBottom{
+
+      border-bottom: 1px solid #cccccc ;
+      padding-bottom: 10px;
+    }
+}
+
+.treeData-list-custom ul {
+    padding-left: 11px;
+
+    li.without-borderTop{
+
+      border-top: none;      
+    }
+}
+
+.treeData-list-link {
+    position: relative;
+    display: block;
+    height: 30px;
+    padding-left: 21px;
+    text-shadow: none;
+    font-size: 13px;
+    text-decoration: none;
+    color: lightslategrey;
+    line-height: 42px;
+    white-space: nowrap;
+
+    &.without-arrow{
+
+      padding-left:0;
+    }
+
+    p{
+      margin-bottom: 0;
+
+      &.checked{
+        padding-left: 24px;
+      } 
+    }
+    
+
+    b {
+      display: block;
+      opacity: 1;
+      width: 0px;
+      height: 0px;
+      line-height: 14px;
+      text-shadow: none;
+      font-size: 18px;
+      position: absolute;
+      left:6px;
+      right: 10px;
+      top: 14px;
+      padding: 0;
+      text-align: center;
+      color: lightslategrey;
+      transition: transform 0.2s linear;
+      cursor: pointer;
+
+      &:focus, :active{
+        color: $primary;
+      }
+    }
+
+    &:hover {
+      color: $primary;
+      b {
+        color: $primary;
+      }
+    }
+}
+
+.tree-list-caret{
+  width: 0;
+	height: 0;
+  margin-top: 2px;
+	border-bottom: 9px solid lightslategrey;
+	border-left: 9px solid transparent;
+
+    &:hover {
+      border-bottom-color: $primary;
+    }
+}
+
+label{
+  &.custom-checkbox.authTree{
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+
+    & > span{
+      margin-top: 13px;
+      padding-left: 26px;
+    }
+
+    & > input {
+      &:checked {
+        & + span {
+          &:before {
+            color: white;
+            background-color: $primary;
+            border-color:$primary;
+          }
+        }
+      }
+
+
+      &:disabled, &.disbled{
+        & + span {
+          &:before {
+            background-color: #efefef ;
+            border-color:#efefef !important;
+          }
+        }
+      }
+    }
+
+    &.allow{
+      & > input {
+        &:checked {
+          & + span {
+            &:before {
+              color: white;
+              background-color: $primary;
+              border-color:$primary;
+            }
+          }
+        }
+
+
+        &:disabled, &.disbled{
+          & + span {
+            &:before {
+              background-color: rgba(32, 158, 145, 0.5);
+              border-color:rgba(32, 158, 145, 0.5);
+            }
+          }
+        }
+      }
+    }
+
+    &.deny{
+      & > input {
+        &:checked {
+          & + span {
+            &:before {
+              color: white;
+              content:"\f00d";
+              background-color: $danger;
+              border-color:$danger;
+            }
+          }
+        }
+
+
+        &:disabled, &.disbled{
+          & + span {
+            &:before {
+              background-color: rgba(232, 86, 86, 0.5);
+              border-color:rgba(232, 86, 86, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+
+.treeData-list-custom{
+
+    ul.treeData-list-custom {
+      li.authTree {
+        padding: 0 0 0 32px;
+        position: relative;
+      }
+      
+      ul {
+        padding-left:41px;
+        border-left: 1px dashed  lightgrey;
+      }
+    } 
+
+    .treeData-list-custom li:before {
+      content: '';
+      width: 26px;
+      height:21px;
+      border-left: 1px dashed  lightgrey;
+      border-bottom: 1px dashed  lightgrey;
+      left: 0px;
+      top: 0px;
+      position: absolute;
+    }
+}
+
+.btn-custom-authTree {
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  
+  &:hover{
+    transform: none;
+  }
+
+  &.btn-outline-normal{
+    border-color: #209e91;
+    background-color: white;
+    color: #209e91;
+
+    &:hover{
+        background-color: #22c6ae;
+        color: white;
+    }
+  }
+
+  &.btn-outline-normal{
+
+      &:disabled{
+          border-color: #cccccc;
+          color:#cccccc;
+      }
+  }
+}

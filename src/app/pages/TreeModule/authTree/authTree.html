@@ -1,0 +1,122 @@
+ <ul class="treeData-list-custom {{withBorderBottom || ''}}">
+    <li class="authTree without-borderTop">
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link">
+            <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+
+            <div *ngIf="editStatus ==  'editted'">
+                <label class="checkbox-inline custom-checkbox authTree allow nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.allow" (click)="allowButtonClick(menuItem.allow, menuItem.child)">
+                    <span></span>
+                </label> 
+
+                <label class="checkbox-inline custom-checkbox authTree deny nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.deny" (click)="denyButtonClick(menuItem.deny, menuItem.child)">
+                    <span></span>
+                </label> 
+            </div>
+
+            <div *ngIf="editStatus == 'normal'">
+                <div *ngIf="isResult">
+                    <label class="checkbox-inline custom-checkbox authTree nowrap" [ngClass]="{deny: !menuItem.allow, allow:menuItem.allow}">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label> 
+                </div>
+                <div *ngIf="!isResult">
+                    <label class="checkbox-inline custom-checkbox authTree allow nowrap" *ngIf="menuItem.allow">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label> 
+
+                    <label class="checkbox-inline custom-checkbox authTree  deny nowrap" *ngIf="menuItem.deny">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label>
+
+                    <label class="checkbox-inline custom-checkbox authTree nowrap" *ngIf="!menuItem.deny && !menuItem.allow">
+                        <input type="checkbox" [disabled]="true" [checked]="false">
+                        <span></span>
+                    </label>
+                </div> 
+            </div>
+
+            <a style="cursor: pointer;">
+                <p *ngIf="isIDShow" class="checked" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+                <p *ngIf="!isIDShow" class="checked" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }}
+                </p>
+            </a>   
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow">
+
+            <div *ngIf="editStatus == 'editted'">
+                <label class="checkbox-inline custom-checkbox authTree allow nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.allow" (click)="allowButtonClick(menuItem.allow, menuItem.child)">
+                    <span></span>
+                </label> 
+
+                <label class="checkbox-inline custom-checkbox authTree deny nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.deny" (click)="denyButtonClick(menuItem.deny, menuItem.child)">
+                    <span></span>
+                </label> 
+            </div>
+
+            <div *ngIf="editStatus == 'normal'">
+                <div *ngIf="isResult">
+                    <label class="checkbox-inline custom-checkbox authTree nowrap" [ngClass]="{deny: !menuItem.allow, allow:menuItem.allow}">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label> 
+                </div>
+                <div *ngIf="!isResult">
+                    <label class="checkbox-inline custom-checkbox authTree allow nowrap" *ngIf="menuItem.allow">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label> 
+
+                    <label class="checkbox-inline custom-checkbox authTree deny nowrap" *ngIf="menuItem.deny">
+                        <input type="checkbox" [disabled]="true" [checked]="true">
+                        <span></span>
+                    </label>
+
+                    <label class="checkbox-inline custom-checkbox authTree nowrap" *ngIf="!menuItem.deny && !menuItem.allow">
+                        <input type="checkbox" [disabled]="true" [checked]="false">
+                        <span></span>
+                    </label>
+                </div> 
+            </div>
+
+
+
+            <a style="cursor: pointer;">
+                <p *ngIf="isIDShow" class="checked" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+                <p *ngIf="!isIDShow" class="checked" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }}
+                </p>
+            </a>    
+        </div>
+
+        <div *ngIf="menuItem.condition.length != 0">
+            <button type="button" class="btn btn-custom-authTree btn-outline-normal" (click)="settingButtonClick(menuItem)" style="float:right;position: relative;top: -27px;z-index: 999;padding-top: 3px;padding-bottom: 3px;">
+                状态
+            </button>
+        </div>
+
+    </li>
+
+    <authTree 
+        *ngFor="let subItem of menuItem.child"
+        [isStateEdit] = "true"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [menuItem] = "subItem"
+        [editStatus] = "editStatus"
+        [isResult] = "isResult"
+        [isIDShow]="isIDShow"
+        (childNotification) = "getNotify($event)">
+    </authTree>
+ </ul>

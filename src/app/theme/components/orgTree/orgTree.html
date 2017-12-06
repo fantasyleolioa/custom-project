@@ -1,0 +1,54 @@
+ <ul class="treeData-list-custom {{withBorderBottom || ''}}">
+    <li>
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link">
+            <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+            <div *ngIf="!isAspect">
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    <span></span>
+                </label>
+            </div>
+            
+            <a *ngIf="editStatus == 'multiple' && !isAspect" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>   
+
+            
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow">
+            <div *ngIf="!isAspect">
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="DeepestButtonClick(menuItem.checked)">
+                    <span></span>
+                </label>
+            </div>
+
+            <a *ngIf="editStatus == 'multiple' && !isAspect" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="DeepestButtonClick(menuItem.checked)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>
+            </a>
+        </div> 
+
+        <span style="text-align:right;float:right;position: relative;top: -15px;left: -25px;">
+            {{menuItem.orgTypeName}}
+        </span>
+    </li>
+
+    
+    
+    <orgTree 
+        *ngFor="let subItem of menuItem.child"
+        [isStateEdit] = "isStateEdit"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [menuItem] = "subItem"
+        [isAspect] = "false"
+        [editStatus] = "editStatus"
+        (childNotification) = "getNotify($event)">
+    </orgTree>
+ </ul>

@@ -1,0 +1,26 @@
+<div baCardBlur class="animated fadeIn card with-scroll-stateDemo" zoom-in>
+    <div class="card-body">
+
+        <div style="padding:20px 0;">
+            <button style="margin-right:15px;" class="btn btn-custom btn-primary-normal" (click)="addButton()">新增按鈕</button>
+            <button style="margin-right:15px;" class="btn btn-custom btn-primary-normal" (click)="deleteButton()">刪除按鈕</button>
+            <button style="margin-right:15px;" class="btn btn-custom btn-primary-normal" (click)="disableButton()">停用按鈕</button>
+            <button style="margin-right:15px;" class="btn btn-custom btn-primary-normal" (click)="UndisableButton()">啟用按鈕</button>
+            <button class="btn btn-custom btn-primary-normal" (click)="changeTitle()">變更標題</button>
+        </div>
+
+        <p style="margin:0;font-size:16px;padding-top:15px;">
+            情境介紹：在Angular的環境裡所有的component都是以樹狀的方式進行下展，在component的溝通(交換資料)的方式大多都只能靠子層往父層推送通知進而影響父層的值，而父層能直接給予子層需要的值(Input)，如果今天是要讓不同父層的子層之間互相溝通必須得透過額外的方式進行溝通，這個Service就是在實作不同的Component之間如何同時可以監聽某項固定的事件，也可以進行推撥通知其他有監聽相對應事項的Component
+        </p> 
+        
+        <p style="margin:0;font-size:16px;padding-top:15px;">
+            運作原理：透過RxJs內有的Subject型態與Observable進行一連串的事件流的掌控，需要的Component透過subscribe訂閱想要訂閱的事件名稱，而其他Component層可以透過notifyChanged推送通知給有訂閱的Component使其進行相對應的行為，也可以在這之間多塞入想要傳遞的物件或字串達成傳送資料的目的
+        </p> 
+
+
+        <div style="padding:20px 0;">
+            <p style="font-size:16px;">如下圖所示，黑框與紅框是不同的Component，而父層也不同，最上方的綠色按鈕點擊後就會產生各種不同的事件讓紅框有相對應的反應</p>
+            <img style="width:1000px;" src="./assets/img/state.png">
+        </div>
+    </div>
+</div>

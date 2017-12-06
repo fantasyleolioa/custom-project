@@ -1,0 +1,21 @@
+<div>
+    <div style="padding:20px 0;">
+        <p style="margin:0;font-size:16px;padding-top:15px;">功能介紹：這是一個編輯功能權限的樹狀資料的component，可以設定為 allow (打勾，左邊的方塊點擊)、 deny (打叉，右邊的方塊點擊)、也可以設定為 empty (兩者都不選)，點擊三角形標籤或者後方名子列可以收縮子層資料</p>
+    </div>
+    <div style="padding:20px 0;">
+        <button style="margin-right:15px;" class="btn btn-custom btn-outline-normal" (click)="treeStatus = 'normal'">瀏覽狀態</button>
+        <button class="btn btn-custom btn-outline-normal" (click)="treeStatus = 'editted'">編輯狀態</button>
+    </div>
+
+    <authTree   
+        *ngFor="let item of treeData" 
+        [menuItem]="item" 
+        [editStatus]="treeStatus" 
+        [withBorderBottom]="'with-borderBottom'"
+        [isResult] = "false"
+        [isIDShow]="true"
+        (childNotification)="getNotify($event)">
+    </authTree>
+</div>
+
+

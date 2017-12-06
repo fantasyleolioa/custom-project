@@ -1,0 +1,109 @@
+ <ul class="treeData-list-custom {{withBorderBottom || ''}}">
+    <li>
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link">
+            <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+            <div *ngIf="!isAspect">
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    <span></span>
+                </label>
+
+                <label *ngIf="editStatus == 'single'" class="radio-inline custom-radio tree nowrap">
+                    <!--<input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [name]="menuItem.id" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">-->
+                    <input type="radio" [checked]="menuItem.checked" (click)="radioButtonClick(menuItem.checked)">
+                    <span></span>
+                </label>
+            </div>
+            
+            
+            <a *ngIf="editStatus == 'multiple' && !isAspect" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>
+            
+            <a *ngIf="editStatus == 'view'" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p (click)="menuItem.subCollapsed = !menuItem.subCollapsed" >
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>
+
+            <a *ngIf="editStatus == 'single'" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="radioButtonClick(menuItem.checked)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>
+
+            
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow">
+            <div *ngIf="!isAspect">
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="DeepestButtonClick(menuItem.checked)">
+                    <span></span>
+                </label>
+
+                <label *ngIf="editStatus == 'single'" class="radio-inline custom-radio tree nowrap">
+                    <!--<input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [name]="menuItem.id" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">-->
+                    <input type="radio" [checked]="menuItem.checked" (click)="radioButtonClick(menuItem.checked)">
+                    <span></span>
+                </label>
+            </div>
+
+            <a *ngIf="editStatus == 'multiple' && !isAspect" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="DeepestButtonClick(menuItem.checked)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>
+            </a>
+
+            <a *ngIf="editStatus == 'view'" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>
+
+            <a *ngIf="editStatus == 'single'" style="cursor: pointer;white-space:nowrap;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus && !isAspect}" (click)="radioButtonClick(menuItem.checked)">
+                    {{ menuItem.name }} ({{menuItem.label}})
+                </p>  
+            </a>
+        </div> 
+
+        <div style="position: relative;">  
+            <button 
+                *ngIf="isEditButton" 
+                type="button" 
+                class="btn btn-custom-orgTree btn-outline-normal" 
+                (click)="EditButtonClick()" 
+                style="float:right;position: relative;right: 15px;top: -22px;z-index: 999;padding-top: 3px;padding-bottom: 3px;">
+                编辑
+            </button>
+
+            <p *ngIf="!hideTypeName" style="margin:0;text-align:right;float:right;position: relative;top: -15px;left: -58px;">
+                {{menuItem.orgTypeName}}
+            </p> 
+        </div>
+    </li>
+
+    
+    
+    <NormalTree 
+        *ngFor="let subItem of menuItem.child"
+        [hideTypeName] = 'hideTypeName'
+        [isStateEdit] = "isStateEdit"
+        [isEditButton] = "isEditButton"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [menuItem] = "subItem"
+        [isAspect] = "false"
+        [editStatus] = "editStatus"
+        [mainTree]="mainTree"
+        (childNotification) = "getNotify($event)">
+    </NormalTree>
+ </ul>

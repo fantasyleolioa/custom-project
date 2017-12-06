@@ -1,0 +1,68 @@
+<ul class="treeData-list-custom {{withBorderBottom || ''}}">
+    <li>
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link">
+            <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+            <div>
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    <span></span>
+                </label>
+            </div>
+            
+            <a style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p [ngClass]="{checked: editStatus}" (click)="checkedButtonClick(menuItem.checked, menuItem.org)">
+                    {{ menuItem.name }} ({{menuItem.id}})
+
+                    <span [style.background-color]="menuItem.backgroundColor"
+                          [style.color]="menuItem.foregroundColor"
+                          style="padding: 3px 6px;margin-left:10px;"> {{menuItem.name}} </span>
+                </p>  
+
+                
+            </a>   
+
+            
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow">
+
+            <div>
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox org-selected-tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    <span></span>
+                </label>
+            </div>
+
+            <a style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isAspect}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p>
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>
+        </div> 
+
+        <span *ngIf="isChild" style="text-align:right;float:right;position: relative;top: -20px;left: -25px;">
+            {{menuItem.orgType}}
+        </span>
+
+        <button *ngIf="isList" 
+                class="btn btn-default btn-icon" 
+                type="button" 
+                style="border:none;padding:0;text-align:right;float:right;position: relative;top: -15px;left: -25px;"
+                (click)="removeButtonClick(menuItem)">
+            <i class="ion-android-close"></i>
+        </button>
+    </li>
+
+
+
+    <orgTagTree 
+        *ngFor="let subItem of menuItem.child"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [isChild] = 'true'
+        [menuItem] = "subItem"
+        (childNotification) = "getNotify($event)">
+    </orgTagTree>
+</ul>
+    

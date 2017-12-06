@@ -1,0 +1,117 @@
+<ul class="treeData-list-custom {{withBorderBottom || ''}}">
+    <li>
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link">
+            <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+            <div *ngIf="!isRoleCatalog" >
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox tree nowrap">
+                    <input type="checkbox" [indeterminate]="menuItem.isIndeterminate" [(ngModel)]="menuItem.checked" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    <span></span>
+                </label>
+            </div>
+
+            <div *ngIf="!isRoleCatalog">
+                <label *ngIf="editStatus == 'single'" class="radio-inline custom-radio tree nowrap">
+                    <!--<input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [name]="menuItem.id" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">-->
+                    <input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">
+                    <span></span>
+                </label>
+            </div>
+
+            <div *ngIf="isStateEdit">
+                <button *ngIf="!menuItem.isInherit" type="button" class="btn btn-default btn-icon stateConfig-button" (click)="settingButtonClick(menuItem)">
+                    <i class="ion-android-settings"></i>
+                </button>
+            </div>
+
+            <a *ngIf="isRoleCatalog" style="cursor: pointer;">
+                <p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>
+
+            <a *ngIf="editStatus == 'single' && !isRoleCatalog" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p *ngIf="!edittingLock" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+
+                <p *ngIf="edittingLock" style="cursor: not-allowed" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>
+
+            <a *ngIf="editStatus == 'multiple' && !isRoleCatalog" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p *ngIf="!edittingLock" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="checkedButtonClick(menuItem.checked, menuItem.child)">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+
+                <p *ngIf="edittingLock" style="cursor: not-allowed" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>   
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow">
+            <div *ngIf="!isRoleCatalog" >
+                <label *ngIf="editStatus == 'multiple'" class="checkbox-inline custom-checkbox tree nowrap">
+                    <input type="checkbox" [(ngModel)]="menuItem.checked" (click)="DeepestButtonClick(menuItem.checked)">
+                    <span></span>
+                </label>
+            </div>
+
+            <div *ngIf="!isRoleCatalog" >
+                <label *ngIf="editStatus == 'single'" class="radio-inline custom-radio tree nowrap">
+                    <!--<input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [name]="menuItem.id" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">-->
+                    <input [disabled]="edittingLock || menuItem.isDisabled" type="radio" [checked]="menuItem.singleChecked" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">
+                    <span></span>
+                </label>
+            </div>
+
+            <div *ngIf="isStateEdit">
+                <button *ngIf="!menuItem.isInherit" type="button" class="btn btn-default btn-icon stateConfig-button" (click)="settingButtonClick(menuItem)">
+                    <i class="ion-android-settings"></i>
+                </button>
+            </div>
+
+            <a *ngIf="isRoleCatalog" style="cursor: pointer;">
+                <p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>
+
+            <a *ngIf="editStatus == 'single' && !isRoleCatalog" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p *ngIf="!edittingLock" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="radioButtonClick(menuItem.singleChecked, menuItem.child, menuItem)">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+
+                <p *ngIf="edittingLock" style="cursor: not-allowed" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>
+
+            <a *ngIf="editStatus == 'multiple' && !isRoleCatalog" style="cursor: pointer;">
+                <!--<p [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">-->
+                <p *ngIf="!edittingLock" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="DeepestButtonClick(menuItem.checked)">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+
+                <p *ngIf="edittingLock" style="cursor: not-allowed" [ngClass]="{checked: editStatus && !isRoleCatalog}" (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                </p>
+            </a>   
+        </div>   
+
+    </li>
+    
+    <tree 
+        *ngFor="let subItem of menuItem.child"
+        [isStateEdit] = "isStateEdit"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [menuItem] = "subItem"
+        [editStatus] = "editStatus"
+        [edittingLock] = "edittingLock"
+        (childNotification) = "getNotify($event)">
+    </tree>
+</ul>

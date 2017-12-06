@@ -1,0 +1,42 @@
+<ul class="treeData-list-custom   {{withBorderBottom || ''}}" >
+    <li>
+        <div *ngIf="menuItem.child.length > 0" class="treeData-list-link main" [ngClass]="{down:!menuItem.subCollapsed}">
+                <b (click)="menuItem.subCollapsed = !menuItem.subCollapsed" class="fa" [ngClass]="{'fa-caret-down': !menuItem.subCollapsed, 'tree-list-caret': menuItem.subCollapsed}"></b>
+                <a  style="cursor: default;">
+                    <p   (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                        {{ menuItem.name }} ({{menuItem.id}})
+                        <button style="float:right;margin:5px 10px 0 0;" class="btn btn-custom btn-outline-normal" (click)="editRole(menuItem.id)">编辑</button>            
+                    </p>
+                </a>
+        </div> 
+
+        <div *ngIf="menuItem.child.length == 0" class="treeData-list-link without-arrow" [ngClass]="menuItem.hasOwnProperty('readOnly')?'main':''">
+                
+            <a  style="cursor: default;" *ngIf="menuItem.hasOwnProperty('readOnly')" >
+                <p   (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                    {{ menuItem.name }} ({{menuItem.id}})
+                    <button  style="float:right;margin:5px 10px 0 0;" class="btn btn-custom btn-outline-normal" (click)="editRole(menuItem.id)">编辑</button>            
+                </p>
+            </a>
+            <!-- routerLink="/crisis-center" -->
+            <span style="cursor: text;" *ngIf="!menuItem.hasOwnProperty('readOnly')">
+                    <p  (click)="menuItem.subCollapsed = !menuItem.subCollapsed">
+                        {{ menuItem.name }} ({{menuItem.id}})
+                    </p>
+            </span>            
+        </div>   
+
+    </li>
+    <li class="childBg" *ngIf="menuItem.child.length">
+        <roleTree 
+        *ngFor="let subItem of menuItem.child"
+        [isStateEdit] = "isStateEdit"
+        [ngbCollapse]="menuItem.subCollapsed"
+        [menuItem] = "subItem"
+        [editStatus] = "editStatus"
+        [edittingLock] = "edittingLock"
+        (childNotification) = "getNotify($event)">
+        </roleTree>
+    </li>
+
+</ul>

@@ -1,0 +1,218 @@
+@import '../../sass/conf/conf';
+
+.lastPage{
+    float: left;
+    cursor: pointer;
+    padding-right: 15px;
+
+    &:hover{
+        transform: none;
+    }
+
+    i{
+        color:#2bb2a2;
+        font-size: 25px;
+    }
+}
+
+.content-top {
+    padding-top: 28px;
+    padding-bottom: 22px;
+}
+
+h1.al-title {
+    font-weight: $font-bold;
+    color: $default-text;
+    float: left;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    opacity: 0.9;
+}
+
+.al-breadcrumb {
+    background: none;
+    color: $default-text;
+    padding: 0;
+    margin: 0;
+    float: right;
+    padding-top: 11px;
+    li {
+        font-size: 18px;
+        font-weight: $font-normal;
+        a {
+        color: $primary-light;
+        }
+
+        &.breadcrumb-item.active {
+        color: $default-text;
+        }
+    }
+}
+
+.al-look {
+    float: right;
+    margin-right: 10px;
+    padding-top: 10px;
+    > a {
+        font-size: 19px;
+    }
+}
+
+
+.btn-pannel{
+    float: right;
+}
+
+.btn:disabled{
+    transform: none;
+}
+
+.btn-custom{
+    min-height: 32px;
+    min-width: 80px;
+    font-weight: bold;
+    border-radius: 2px;
+    font-family: 微軟正黑體;
+
+    &:hover{
+        transform: none;
+    }
+
+    &.btn-primary-normal{
+        border-color: #2bb2a2;
+        background-color: #2bb2a2;
+
+        .text-inner{
+            font-size: 14px;
+            color:white;
+            margin: 0;
+        }
+
+        &:hover{
+            
+            background-color: #22c6ae;
+        }
+    }
+
+    &.btn-primary-danger{
+        border-color: #e95e5e;
+        background-color: #e95e5e;
+
+        .text-inner{
+            font-size: 14px;
+            color:white;
+            margin: 0;
+        }
+
+        &:hover{
+            
+            background-color: #f76f6f;
+        }
+    }
+
+    &.btn-outline-normal{
+        border-color: #209e91;
+        background-color: white;
+
+        .text-inner{
+            font-size: 14px;
+            color: #209e91;
+            margin: 0;
+        }
+
+        &:hover{
+            
+            background-color: #22c6ae;
+            .text-inner{
+                color: white;
+            }
+        }
+    }
+
+    &.btn-outline-alert{
+        border-color: #e54c4c;
+        background-color: white;
+
+        .text-inner{
+            font-size: 14px;
+            color:#e54c4c;
+            margin: 0;
+        }
+
+        &:hover{
+            
+            background-color: #ef7878;
+            .text-inner{
+                color: white;
+            }
+        }
+    }
+
+    &.btn-outline-normal, &.btn-outline-alert{
+
+        &:disabled{
+            border-color: #cccccc;
+
+            .text-inner{
+                color:#cccccc;
+            }
+            
+        }
+    }
+
+    &.btn-primary-custom, &.btn-primary-danger{
+
+        &:disabled{
+            border-color: #cccccc;
+            background-color: #cccccc;
+
+            .text-inner{
+                color:#cccccc;
+            }
+            
+        }
+    }
+
+}
+
+
+@media screen and (max-width: $resM) {
+    h1.al-title {
+        margin-top: 8px;
+    }
+
+    .btn-custom{
+        padding:5px 13px 5px 13px;
+        
+        &.btn-cancel, &.btn-danger-custom, &.btn-info-custom, &.btn-normal, &.btn-primary-custom, &.btn-save, &.btn-success-custom, &.btn-warning-custom{
+            
+            .text-inner{
+                display: none;
+            }
+
+            .icon-inner {
+                &.fa{
+                    padding-top: 5px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $resS) {
+    h1.al-title {
+        width: 100%;
+    }
+
+    .content-top {
+        padding-bottom: 20px;
+    }
+
+    .btn-pannel{
+        margin-top:15px;
+        float: left;
+    }
+}

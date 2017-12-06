@@ -1,0 +1,22 @@
+<div>
+    <div style="padding:20px 0;">
+        <p style="margin:0;font-size:16px;padding-top:15px;">功能介紹：這是一個編輯一般樹狀資料的component，可以設定為 單選 (全域只能選擇一個)、 多選 (全域都可勾選)、純瀏覽模式，點選名子、radio button或checkbox  button即可勾選</p>
+    </div>
+    <div style="padding:20px 0;">
+        <button style="margin-right:15px;" class="btn btn-custom btn-outline-normal" (click)="changeStatus('view')">瀏覽狀態</button>
+        <button style="margin-right:15px;" class="btn btn-custom btn-outline-normal" (click)="changeStatus('single')">單選狀態</button>
+        <button class="btn btn-custom btn-outline-normal" (click)="changeStatus('multiple')">多選狀態</button>
+    </div>
+
+    <NormalTree   
+        *ngFor="let item of treeData"
+        [hideTypeName] = "true" 
+        [menuItem]="item" 
+        [editStatus]="treeStatus" 
+        [withBorderBottom]="'with-borderBottom'"
+        [mainTree]="treeData"
+        (childNotification) = "getNotify($event)">
+    </NormalTree>
+</div>
+
+

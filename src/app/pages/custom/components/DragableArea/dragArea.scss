@@ -1,0 +1,19 @@
+.card {
+
+    &.with-scroll-dragArea {
+        margin-bottom: 0;
+        height: calc(100vh - 160px);
+        > .card-body {
+            flex: 0 1 auto;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+    }
+}
+
+#drag {
+    width: 500px;
+    height: 300px;
+    background-color: red;
+    cursor: all-scroll;
+}
