@@ -9,9 +9,9 @@ import { ContentTopService } from '../../service/contentTopService/ContentTop.se
 })
 export class CustomComponent {
 
-  constructor(private contenTopService:ContentTopService) {
+  constructor(private contentTopService:ContentTopService) {
 
-    this.contenTopService.EnvironmentSetting([]);
-    this.contenTopService.ChangeStatus("normal");
+    this.contentTopService.EnvironmentSetting([]);
+    this.contentTopService.ChangeStatus("normal");
   }
 }

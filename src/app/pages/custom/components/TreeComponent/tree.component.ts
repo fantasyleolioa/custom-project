@@ -14,9 +14,9 @@ export class TreeComponent {
 
     
     // Constructor
-    constructor(private contenTopService:ContentTopService) {
+    constructor(private contentTopService:ContentTopService) {
 
-        this.contenTopService.TitleSetting("樹狀資料展示");
+        this.contentTopService.TitleSetting("樹狀資料展示");
 
         this.tabList.push(new tab(true, "權限樹"));
         this.tabList.push(new tab(false, "一般樹"));

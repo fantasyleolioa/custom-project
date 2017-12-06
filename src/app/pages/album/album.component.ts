@@ -15,9 +15,9 @@ export class AlbumComponent {
 
     
     // Constructor
-    constructor(private contenTopService:ContentTopService) {
+    constructor(private contentTopService:ContentTopService) {
 
-        this.contenTopService.TitleSetting("作品展示");
+        this.contentTopService.TitleSetting("作品展示");
 
         this.tabList.push(new tab(true, "AppFoundry"));
         this.tabList.push(new tab(false, "CAC(出貨管理系統)"));

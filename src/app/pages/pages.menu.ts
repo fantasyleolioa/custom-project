@@ -46,14 +46,14 @@ export const PAGES_MENU = [
               }
             }
           },
-          {
-            path: 'areaCenter',
-            data:{
-              menu:{
-                title: '水平、垂直置中'
-              }
-            }
-          }
+          // {
+          //   path: 'areaCenter',
+          //   data:{
+          //     menu:{
+          //       title: '水平、垂直置中'
+          //     }
+          //   }
+          // }
         ]
       },
       {

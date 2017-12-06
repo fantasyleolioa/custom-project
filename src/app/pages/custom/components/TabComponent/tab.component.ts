@@ -12,9 +12,9 @@ export class TabComponent {
   public treeData:any[] = [];
   public tabList:tab[] = [];
 
-  constructor(private contenTopService:ContentTopService) {
+  constructor(private contentTopService:ContentTopService) {
 
-    this.contenTopService.TitleSetting("Tab樣式展示");
+    this.contentTopService.TitleSetting("Tab樣式展示");
 
     this.tabList.push(new tab(true, "Content1"));
     this.tabList.push(new tab(false, "Content2"));

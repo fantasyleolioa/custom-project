@@ -14,6 +14,8 @@ import { TabContent2Component } from "./components/TabComponent/tabContent2/tabC
 import { TreeComponent } from "./components/TreeComponent/tree.component";
 import { AuthDemoComponent } from "./components/TreeComponent/components/authDemo/authDemo.component";
 import { NormalDemoComponent } from "./components/TreeComponent/components/normalDemo/normalDemo.component";
+import { StateDemoComponent } from "./components/StateDemo/stateDemo.component";
+import { DragAreaComponent } from "./components/DragableArea/dragArea.component";
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { NormalDemoComponent } from "./components/TreeComponent/components/norma
     TabContent2Component,
     TreeComponent,
     AuthDemoComponent,
-    NormalDemoComponent
+    NormalDemoComponent,
+    StateDemoComponent,
+    DragAreaComponent
   ],
   providers: [
   ]
