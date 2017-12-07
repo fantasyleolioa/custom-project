@@ -16,6 +16,7 @@ import { AuthDemoComponent } from "./components/TreeComponent/components/authDem
 import { NormalDemoComponent } from "./components/TreeComponent/components/normalDemo/normalDemo.component";
 import { StateDemoComponent } from "./components/StateDemo/stateDemo.component";
 import { DragAreaComponent } from "./components/DragableArea/dragArea.component";
+import { CssPracticeComponent } from "./components/cssPractice/cssPractice.component";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DragAreaComponent } from "./components/DragableArea/dragArea.component"
     AuthDemoComponent,
     NormalDemoComponent,
     StateDemoComponent,
-    DragAreaComponent
+    DragAreaComponent,
+    CssPracticeComponent
   ],
   providers: [
   ]

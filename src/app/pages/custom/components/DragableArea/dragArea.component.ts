@@ -34,7 +34,9 @@ export class DragAreaComponent {
                 const mouseDown = Rx.Observable.fromEvent( this.drag.nativeElement, 'mousedown');
                 const mouseMove = Rx.Observable.fromEvent( this.drag.nativeElement, 'mousemove');
                 const mouseUp = Rx.Observable.fromEvent( this.drag.nativeElement, 'mouseup');
-                const mouseOut = Rx.Observable.fromEvent( this.drag.nativeElement, 'mouseut');
+                const mouseOut = Rx.Observable.fromEvent( this.drag.nativeElement, 'mouseout');
+
+                const eventOver = mouseUp.merge(mouseOut);
 
         
                 const validValue = (value, max, min) => {
@@ -42,7 +44,7 @@ export class DragAreaComponent {
                 }
         
                 mouseDown
-                    .map(e => mouseMove.takeUntil(mouseUp))
+                    .map(e => mouseMove.takeUntil(eventOver))
                     .concatAll()
                     .withLatestFrom(mouseDown, (move:MouseEvent, down:MouseEvent) => {
                         return {
