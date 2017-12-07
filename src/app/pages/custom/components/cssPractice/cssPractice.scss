@@ -1,0 +1,38 @@
+.card {
+
+    &.with-scroll-cssPractice {
+        margin-bottom: 0;
+        height: calc(100vh - 160px);
+        > .card-body {
+            flex: 0 1 auto;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+    }
+}
+
+.demo{
+    height:200px;
+    width:80%;
+    border: 2px solid red;
+    position:absolute;
+
+    .center{
+        height:100px;
+        width:40%;
+        border: 2px solid blue;
+        position:relative;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+        p{
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    }
+}
