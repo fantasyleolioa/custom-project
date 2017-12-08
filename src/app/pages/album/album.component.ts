@@ -20,8 +20,8 @@ export class AlbumComponent {
         this.contentTopService.TitleSetting("作品展示");
 
         this.tabList.push(new tab(true, "AppFoundry"));
-        this.tabList.push(new tab(false, "CAC(出貨管理系統)"));
-        this.tabList.push(new tab(false, "CC(後臺權限管理系統)"));
+        this.tabList.push(new tab(false, "出貨管理系統"));
+        this.tabList.push(new tab(false, "後臺權限管理系統"));
     }
 
 
