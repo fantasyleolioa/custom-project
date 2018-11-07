@@ -8,7 +8,7 @@
 
 最主要的自我研究的小成果有三個：樹狀資料component、ng版本全域state service、RxJS製作事件流操作範例，細節就在執行專案後可以瀏覽網站內容
 
-執行步驟
+執行步驟(node version 6.x)
 
 ```
     npm i
