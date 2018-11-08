@@ -1,0 +1,11 @@
+<div class="basic-card-container">
+    <div class="basic-header" *ngIf="!withoutTitle">
+        <ng-content select="div.custom-header"></ng-content>
+    </div>
+    <div class="basic-body">
+        <ng-content select="div.custom-body"></ng-content>
+    </div>
+    <div class="basic-footer">
+        <ng-content select="div.custom-footer"></ng-content>
+    </div>
+</div>

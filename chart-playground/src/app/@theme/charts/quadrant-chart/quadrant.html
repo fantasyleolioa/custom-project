@@ -1,0 +1,86 @@
+<ngx-charts-chart
+    [view]="[width, height]"
+    [showLegend]="legend"
+    [activeEntries]="activeEntries"
+    [legendOptions]="legendOptions"
+    [animations]="animations"
+    (legendLabelClick)="onClick($event)"
+    (legendLabelActivate)="onActivate($event)"
+    (legendLabelDeactivate)="onDeactivate($event)">
+    <svg:defs>
+        <svg:clipPath [attr.id]="clipPathId">
+            <svg:rect
+                [attr.width]="dims.width + 10"
+                [attr.height]="dims.height + 10"
+                [attr.transform]="'translate(-5, -5)'"/>
+        </svg:clipPath>
+    </svg:defs>
+    <svg:g [attr.transform]="transform" class="bubble-chart chart">
+        <svg:g ngx-quadrant-x-axis
+            *ngIf="xAxis"
+            [quadrantSwitch]="quadrantSwitch"
+            [showGridLines]="showGridLines"
+            [dims]="dims"
+            [xScale]="xScale"
+            [showLabel]="showXAxisLabel"
+            [labelText]="xAxisLabel"
+            [tickFormatting]="xAxisTickFormatting"
+            [ticks]="xAxisTicks"
+            (dimensionsChanged)="updateXAxisHeight($event)"/>
+        <svg:g ngx-quadrant-y-axis
+            *ngIf="yAxis"
+            [quadrantSwitch]="quadrantSwitch"
+            [showGridLines]="showGridLines"
+            [yScale]="yScale"
+            [dims]="dims"
+            [showLabel]="showYAxisLabel"
+            [labelText]="yAxisLabel"
+            [tickFormatting]="yAxisTickFormatting"
+            [ticks]="yAxisTicks"
+            (dimensionsChanged)="updateYAxisWidth($event)"/>
+        <svg:rect
+            class="bubble-chart-area"
+            x="0"
+            y="0"
+            [attr.width]="dims.width"
+            [attr.height]="dims.height"
+            style="fill: rgb(255, 0, 0); opacity: 0; cursor: initial;"
+            (mouseenter)="deactivateAll()" />
+        <svg:g
+            [attr.transform]="baseXline()">
+            <svg:line
+                style="stroke:black"
+                class="gridline-path gridline-path-vertical"
+                [attr.x2]="dims.width"
+                [attr.x1]="0" />
+        </svg:g>
+        <svg:g
+            [attr.transform]="baseYline()">
+            <svg:line
+                style="stroke:black"
+                class="gridline-path gridline-path-vertical"
+                [attr.y2]="dims.height"
+                [attr.y1]="0" />
+        </svg:g>
+        <svg:g [attr.clip-path]="clipPath">
+            <svg:g *ngFor="let series of data; trackBy:trackBy" [@animationState]="'active'">
+                <svg:g ngx-charts-quadrant-series
+                    [xScale]="xScale"
+                    [yScale]="yScale"
+                    [rScale]="rScale"
+                    [xScaleType]="xScaleType"
+                    [yScaleType]="yScaleType"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    [colors]="colors"
+                    [data]="series"
+                    [activeEntries]="activeEntries"
+                    [tooltipDisabled]="tooltipDisabled"
+                    [tooltipTemplate]="tooltipTemplate"
+                    (select)="onClick($event, series)"
+                    (activate)="onActivate($event)"
+                    (deactivate)="onDeactivate($event)" />
+            </svg:g>
+        </svg:g>
+    </svg:g>    
+</ngx-charts-chart>

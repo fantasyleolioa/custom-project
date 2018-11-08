@@ -1,0 +1,14 @@
+.content-main{
+    position: relative;
+    color: #a4abb3;
+    background: #ebeff5;
+    padding: 36px;
+    min-height: 100vh;
+
+    /deep/.content-layout{
+        background: #fff;
+        color: #4b4b4b;
+        border-radius: 0.375rem;
+        box-shadow: 0 2px 12px 0 #dfe3eb; 
+    }
+}
