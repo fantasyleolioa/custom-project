@@ -1,0 +1,43 @@
+<div class="row" style="height:calc(100vh - 72px);">
+    <div class="col-md-4" style="height:100%;">
+        <div class="option-layout">
+            <div class="form-group">
+                <label for="chart-select">選擇圖表</label>
+                <select 
+                    class="form-control" 
+                    id="chart-select" 
+                    [ngModel]="chartType"
+                    (ngModelChange)="selectChart($event)">
+                    <option value="combo">長條折線綜合圖</option>
+                    <option value="spread">散步＆象限圖</option>
+                    <option value="gauge">儀表版圖</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8" style="height:100%;padding:30px;">
+        <div class="chart-layout">
+            <ngx-charts-quadrant-chart
+                [view]="view"
+                [quadrantSwitch]="true"
+                [roundDomains]="true"
+                [results]="spreadData"
+                [animations]="animations"
+                [showGridLines]="true"
+                [legend]="true"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [autoScale]="autoScale"
+                [scheme]="colorScheme"
+                [schemeType]="schemeType"
+                [tooltipDisabled]="tooltipDisabled"
+                [minRadius]="radius"
+                [maxRadius]="radius">
+            </ngx-charts-quadrant-chart>
+        </div>
+    </div>
+</div>

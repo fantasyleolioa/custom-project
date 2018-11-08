@@ -1,0 +1,21 @@
+// prelosder style
+@import './_preloader';
+
+// improt bootstrap style
+@import '~bootstrap/scss/bootstrap.scss';
+
+div.toast-content{
+    width: 90% !important;
+}
+
+div.toast-close-button{
+    margin-top: -20px;
+    margin-right: -10px;
+}
+
+.toast-close-button{
+    display: inline-block !important;
+    top: unset !important;
+    right: unset !important;
+    position: unset !important;
+}
