@@ -1,8 +1,39 @@
 .option-layout{
+    overflow: auto;
     padding: 20px;
+
+    div.row:not(:first-child){
+        margin-top: 20px;
+    }
 }
 
 .chart-layout{
-    width: 100%;
+    display:flex;
+    justify-content: center;
+    position: relative;
+    width:100%;
+    height: 100%;;
+}
+
+.quadrantChart-layout{
+    display:flex;
+    position: relative;
+    flex-direction: column;
+    width:100%;
     height: 100%;
+
+    .chart-container{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .label-container{
+        display: flex;
+        align-self: flex-end;
+        justify-content: center;
+        padding-top: 5px;
+        width: 100%;
+    }
 }

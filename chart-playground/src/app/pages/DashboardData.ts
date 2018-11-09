@@ -445,15 +445,15 @@ export var double = [
 
 export var gaugeData = [
 	{
-		"name": "Germany",
+		"name": "Google",
 		"value": 5
 	  },
 	  {
-		"name": "United States",
+		"name": "Facebook",
 		"value": 6
 	  },
 	  {
-		"name": "Indonesia",
+		"name": "Line",
 		"value": 7
 	  }
 ];
@@ -527,7 +527,7 @@ export var test2 = [
 
 export var bubbleData = [
 	{
-		name: 'Germany',
+		name: 'Google',
 		series: [
 			{
 				name: '2010',
@@ -547,7 +547,7 @@ export var bubbleData = [
 		]
 	},
 	{
-		name: 'United States',
+		name: 'Facebook',
 		series: [
 			{
 				name: '2010',
@@ -567,7 +567,7 @@ export var bubbleData = [
 		]
 	},
 	{
-		name: 'France',
+		name: 'Line',
 		series: [
 			{
 				name: '2010',

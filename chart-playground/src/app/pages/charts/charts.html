@@ -2,35 +2,173 @@
     <div class="col-md-4" style="height:100%;">
         <div class="option-layout">
             <div class="form-group">
-                <label for="chart-select">選擇圖表</label>
-                <select 
-                    class="form-control" 
-                    id="chart-select" 
-                    [ngModel]="chartType"
-                    (ngModelChange)="selectChart($event)">
-                    <option value="combo">長條折線綜合圖</option>
-                    <option value="spread">散步＆象限圖</option>
-                    <option value="gauge">儀表版圖</option>
-                </select>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="chart-select">選擇圖表</label>
+                        <select 
+                            class="form-control" 
+                            id="chart-select" 
+                            [ngModel]="chartType"
+                            (ngModelChange)="selectChart($event)">
+                            <option value="combo">長條折線綜合圖</option>
+                            <option value="spread">散佈圖</option>
+                            <option value="quadrant">象限圖</option>
+                            <option value="gauge">儀表版圖</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-12" style="display:flex; align-items: flex-end;">
+                        <button class="btn btn-outline-primary" (click)="shuffleData()">更新資料</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isFitContainer">
+                    <div class="col-md-12" >
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'combo'" [checked]="isFitContainer" (change)="changFitContainer($event.target.checked)">
+                            自動調整長寬
+                        </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!isFitContainer">
+                    <div class="col-md-6" >
+                        <label>
+                            <input type="checkbox" [checked]="isFitContainer" (change)="changFitContainer($event.target.checked)">
+                            自動調整長寬
+                        </label>
+                    </div>
+                    <div class="col-md-6" >
+                        <button class="btn btn-outline-info" (click)="setView()">套用至圖形</button>
+                    </div>
+                    <div class="col-md-6" >
+                        <label style="display:inherit;margin-bottom: 0;">寬度(單位是px)</label>
+                        <input type="number" [(ngModel)]="fixedWidth">
+                    </div>
+                    <div class="col-md-6" *ngIf="!isFitContainer">
+                        <label style="display:inherit;margin-bottom: 0;">高度(單位是px)</label>
+                        <input type="number" [(ngModel)]="fixedHeight">
+                    </div>
+                </div>
+                <div class="row" *ngIf="chartType != 'gauge'">
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'quadrant'" [checked]="showXAxis" (change)="showXAxis = $event.target.checked">
+                            顯示X軸係數以及格線
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'quadrant'" [checked]="showYAxis" (change)="showYAxis = $event.target.checked">
+                            顯示Y軸係數以及格線
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'quadrant'" [checked]="showXLabel" (change)="showXLabel = $event.target.checked">
+                            顯示X軸標籤
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'quadrant'" [checked]="showYLabel" (change)="showYLabel = $event.target.checked">
+                            顯示Y軸標籤
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [checked]="showLegend" (change)="showLegend = $event.target.checked">
+                            顯示圖表解釋窗格
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'quadrant'" [checked]="showGridlines" (change)="showGridlines = $event.target.checked">
+                            顯示圖表格線
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'combo'"  [checked]="roundDomains" (change)="roundDomains = $event.target.checked">
+                            自動數值整理
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [disabled]="chartType == 'combo'" [checked]="autoScale" (change)="autoScale = $event.target.checked">
+                            自動聚焦數據集中位置
+                        </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="chartType == 'gauge'">
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [checked]="gaugeShowAxis" (change)="gaugeShowAxis = $event.target.checked">
+                            顯示儀表板數值以及格線
+                        </label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>
+                            <input type="checkbox" [checked]="showLegend" (change)="showLegend = $event.target.checked">
+                            顯示圖表解釋窗格
+                        </label>
+                        
+                    </div>
+                    <div class="col-md-12">
+                        <label style="display:inherit;margin-bottom: 0;">圖形開始的角度</label>
+                        <input type="number" [(ngModel)]="gaugeStartAngle">
+                    </div>
+                     <div class="col-md-12" style="margin-top:10px;">
+                        <label style="display:inherit;margin-bottom: 0;">圖形的總角度</label>
+                        <input type="number" [(ngModel)]="gaugeAngleSpan">
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px;">
+                        <label style="display:inherit;margin-bottom: 0;">大分隔線的個數</label>
+                        <input type="number" [(ngModel)]="gaugeLargeSegments">
+                    </div>
+                     <div class="col-md-12" style="margin-top:10px;">
+                        <label style="display:inherit;margin-bottom: 0;">小分隔線的個數</label>
+                        <input type="number" [(ngModel)]="gaugeSmallSegments">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-md-8" style="height:100%;padding:30px;">
-        <div class="chart-layout">
+        <div class="chart-layout" *ngIf="chartType == 'combo'">
+             <combo-chart-component
+                [view]="view"
+                [scheme]="comboBarScheme"
+                [colorSchemeLine]="lineChartScheme"
+                [results]="barChart"
+                [lineChart]="lineChart"
+                [animations]="animations"
+                [tooltipDisabled]="tooltipDisabled"
+                [yAxisTickFormatting]="yTickFormat"
+                [yAxisScaleFactor]="yAxisScale"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showGridLines]="showGridlines"
+                [showXAxisLabel]="showXLabel"
+                [showYAxisLabel]="showYLabel"
+                [yAxisLabel]="'Cost / Budget'"
+                [xAxisLabel]="'Date'"
+                (select)="onSelect($event)">
+            </combo-chart-component>
+        </div>
+        <div class="chart-layout" *ngIf="chartType == 'spread'">
             <ngx-charts-quadrant-chart
                 [view]="view"
-                [quadrantSwitch]="true"
+                [quadrantSwitch]="false"
                 [roundDomains]="true"
                 [results]="spreadData"
                 [animations]="animations"
-                [showGridLines]="true"
-                [legend]="true"
+                [showGridLines]="showGridlines"
+                [legend]="showLegend"
                 [xAxis]="showXAxis"
                 [yAxis]="showYAxis"
-                [showXAxisLabel]="false"
-                [showYAxisLabel]="false"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
+                [showXAxisLabel]="showXLabel"
+                [showYAxisLabel]="showYLabel"
+                [xAxisLabel]="'impression'"
+                [yAxisLabel]="'click'"
                 [autoScale]="autoScale"
                 [scheme]="colorScheme"
                 [schemeType]="schemeType"
@@ -38,6 +176,50 @@
                 [minRadius]="radius"
                 [maxRadius]="radius">
             </ngx-charts-quadrant-chart>
+        </div>
+        <div class="quadrantChart-layout" *ngIf="chartType == 'quadrant'">
+            <div class="chart-container">
+                <ngx-charts-quadrant-chart
+                    [view]="view"
+                    [quadrantSwitch]="true"
+                    [roundDomains]="roundDomains"
+                    [results]="spreadData"
+                    [animations]="animations"
+                    [legend]="showLegend"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [showXAxisLabel]="false"
+                    [showYAxisLabel]="false"
+                    [autoScale]="autoScale"
+                    [scheme]="colorScheme"
+                    [schemeType]="schemeType"
+                    [tooltipDisabled]="tooltipDisabled"
+                    [minRadius]="radius"
+                    [maxRadius]="radius">
+                </ngx-charts-quadrant-chart>
+            </div>
+            <div class="label-container">
+                <div style="margin-right:60px;">X軸：click</div>
+                <div>Y軸：impression</div>
+            </div>
+        </div>
+        <div class="chart-layout" *ngIf="chartType == 'gauge'">
+            <ngx-charts-gauge
+                [view]="view"
+                [legend]="showLegend"
+                [results]="gaugeData"
+                [animations]="animations"
+                [scheme]="colorScheme"
+                [min]="gaugeMin"
+                [max]="gaugeMax"
+                [angleSpan]="gaugeAngleSpan"
+                [startAngle]="gaugeStartAngle"
+                [showAxis]="gaugeShowAxis"
+                [bigSegments]="gaugeLargeSegments"
+                [smallSegments]="gaugeSmallSegments"
+                [tooltipDisabled]="tooltipDisabled"
+                [valueFormatting]="gaugeValueFormatting">
+            </ngx-charts-gauge>
         </div>
     </div>
 </div>
