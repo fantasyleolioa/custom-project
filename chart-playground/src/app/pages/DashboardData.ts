@@ -1,6 +1,6 @@
 export let lineChartSeries = [
 	{
-		name: 'Cost',
+		name: '成本',
 		series: [
 			{
 				name: '9/12',

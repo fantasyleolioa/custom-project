@@ -149,8 +149,8 @@
                 [showGridLines]="showGridlines"
                 [showXAxisLabel]="showXLabel"
                 [showYAxisLabel]="showYLabel"
-                [yAxisLabel]="'Cost / Budget'"
-                [xAxisLabel]="'Date'"
+                [yAxisLabel]="'成本 / 預算'"
+                [xAxisLabel]="'日期'"
                 (select)="onSelect($event)">
             </combo-chart-component>
         </div>
@@ -167,8 +167,8 @@
                 [yAxis]="showYAxis"
                 [showXAxisLabel]="showXLabel"
                 [showYAxisLabel]="showYLabel"
-                [xAxisLabel]="'impression'"
-                [yAxisLabel]="'click'"
+                [xAxisLabel]="'曝光數'"
+                [yAxisLabel]="'點擊'"
                 [autoScale]="autoScale"
                 [scheme]="colorScheme"
                 [schemeType]="schemeType"
@@ -188,6 +188,8 @@
                     [legend]="showLegend"
                     [xAxis]="showXAxis"
                     [yAxis]="showYAxis"
+                    [xAxisLabel]="'曝光數'"
+                    [yAxisLabel]="'點擊'"
                     [showXAxisLabel]="false"
                     [showYAxisLabel]="false"
                     [autoScale]="autoScale"
@@ -199,8 +201,8 @@
                 </ngx-charts-quadrant-chart>
             </div>
             <div class="label-container">
-                <div style="margin-right:60px;">X軸：click</div>
-                <div>Y軸：impression</div>
+                <div style="margin-right:60px;">X軸：曝光數</div>
+                <div>Y軸：點擊數</div>
             </div>
         </div>
         <div class="chart-layout" *ngIf="chartType == 'gauge'">
