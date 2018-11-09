@@ -259,7 +259,7 @@ export class ComboChartComponent extends BaseChartComponent  {
   getSeriesDomain(): any[] {
     this.combinedSeries = this.lineChart.slice(0);
     this.combinedSeries.push({
-      name: 'Budget',
+      name: '預算',
       series: this.results
     });
     return this.combinedSeries.map(d => d.name);
