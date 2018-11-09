@@ -225,7 +225,7 @@ export class ComboChartComponent extends BaseChartComponent  {
     if (this.filteredDomain) {
       this.xDomainLine = this.filteredDomain;
     }
-
+    
     this.seriesDomain = this.getSeriesDomain();
 
     this.xScaleLine = this.getXScaleLine(this.xDomainLine, this.dims.width);
@@ -259,7 +259,7 @@ export class ComboChartComponent extends BaseChartComponent  {
   getSeriesDomain(): any[] {
     this.combinedSeries = this.lineChart.slice(0);
     this.combinedSeries.push({
-      name: this.yAxisLabel,
+      name: 'Budget',
       series: this.results
     });
     return this.combinedSeries.map(d => d.name);

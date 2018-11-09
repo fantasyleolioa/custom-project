@@ -34,7 +34,7 @@
     npm run build-prod-ngsw
 ```
 
-3. 使用 http-server 建立瀏覽環境
+3. 使用 http-server 建立瀏覽環境
 ```
     npm run serve-ngsw
 
