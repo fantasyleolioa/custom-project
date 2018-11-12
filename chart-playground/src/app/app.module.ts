@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ThemeModule } from './@theme/theme.module';
 import { environment } from '../environments/environment';
-
+import { RouterModule, Routes } from '@angular/router';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     ToasterModule.forRoot(),
+    RouterModule.forRoot([], { useHash: true} ),
     AppRoutingModule,
     NgxChartsModule,
     BrowserAnimationsModule,
